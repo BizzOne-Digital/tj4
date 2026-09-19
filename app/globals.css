@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #10176f;
+  --color-midnight: #080b2a;
+  --color-electric: #2436d8;
+  --color-ice: #f1f3f6;
+  --color-steel: #aeb4c2;
+  --color-charcoal: #15171d;
+  --color-ink: #050507;
+  --font-display: var(--font-bebas);
+  --font-body: var(--font-manrope);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    @apply text-white antialiased;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    font-family: var(--font-body), system-ui, sans-serif;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    background-color: #080b2a;
+    background-image:
+      radial-gradient(ellipse 100% 70% at 10% -20%, rgba(36, 54, 216, 0.28), transparent 55%),
+      radial-gradient(ellipse 80% 55% at 100% 0%, rgba(16, 23, 111, 0.55), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(36, 54, 216, 0.1), transparent 45%);
+    background-attachment: scroll;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .text-gradient-electric {
+    @apply bg-gradient-to-r from-electric via-blue-300 to-electric bg-clip-text text-transparent;
+  }
+
+  .text-gradient-silver {
+    @apply bg-gradient-to-r from-white via-ice to-steel bg-clip-text text-transparent;
+  }
+
+  .glass-panel {
+    @apply border border-white/10 backdrop-blur-xl;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(16, 23, 111, 0.15) 45%,
+      rgba(8, 11, 42, 0.4) 100%
+    );
+  }
+
+  .court-lines {
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px
+      ),
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .glow-blue {
+    box-shadow:
+      0 0 40px rgba(36, 54, 216, 0.35),
+      0 0 80px rgba(36, 54, 216, 0.12);
+  }
+
+  .clip-angle {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-white/15 px-4 py-3 text-white outline-none transition focus:border-electric/60 focus:ring-2 focus:ring-electric/20;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(8, 11, 42, 0.5));
+  }
+
+  .btn-gradient {
+    background: linear-gradient(135deg, #10176f 0%, #2436d8 40%, #4f6bff 70%, #2436d8 100%);
+    background-size: 200% auto;
+    transition:
+      background-position 0.4s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    background-position: right center;
+    box-shadow: 0 0 32px rgba(36, 54, 216, 0.45);
+  }
+
+  .section-gradient-a {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 11, 42, 0.3) 0%,
+      rgba(16, 23, 111, 0.25) 40%,
+      rgba(8, 11, 42, 0.95) 100%
+    );
+  }
+
+  .section-gradient-b {
+    background: linear-gradient(
+      125deg,
+      rgba(36, 54, 216, 0.12) 0%,
+      rgba(8, 11, 42, 0.9) 35%,
+      rgba(16, 23, 111, 0.35) 100%
+    );
+  }
+
+  .section-gradient-c {
+    background: linear-gradient(
+      to right,
+      rgba(8, 11, 42, 1) 0%,
+      rgba(16, 23, 111, 0.4) 50%,
+      rgba(36, 54, 216, 0.08) 100%
+    );
+  }
+
+  .gradient-card {
+    background: linear-gradient(160deg, rgba(16, 23, 111, 0.35) 0%, rgba(21, 23, 29, 0.85) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .gradient-card:hover {
+    border-color: rgba(36, 54, 216, 0.4);
+    background: linear-gradient(160deg, rgba(36, 54, 216, 0.2) 0%, rgba(21, 23, 29, 0.92) 100%);
+    box-shadow: 0 8px 40px rgba(36, 54, 216, 0.15);
+  }
+
+  .gradient-border-top {
+    border-top: 1px solid transparent;
+    border-image: linear-gradient(90deg, transparent, rgba(36, 54, 216, 0.6), transparent) 1;
+  }
+
+  .mesh-orb {
+    pointer-events: none;
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+  }
+
+  .page-x {
+    @apply box-border max-w-full px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-y {
+    @apply py-12 sm:py-16 md:py-20;
+  }
+
+  .site-root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .section-clip {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fixed public header (nav + optional announcement) */
+  :root {
+    --header-h-nav: 3.25rem;
+    --header-h-with-bar: 5.75rem;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --header-h-nav: 3.5rem;
+      --header-h-with-bar: 6.25rem;
+    }
+  }
+
+  html.mobile-nav-open,
+  html.mobile-nav-open body {
+    overflow: hidden;
+    touch-action: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .clip-angle {
+    clip-path: none;
+  }
+
+  .mesh-orb {
+    display: none;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 24px rgba(36, 54, 216, 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn-gradient:hover {
+    background-position: 0 center;
+  }
+}
