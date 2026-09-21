@@ -12,6 +12,7 @@ import {
   Event,
   Achievement,
   PageSection,
+  GalleryAlbum,
 } from "../models/schemas";
 import { defaultSiteSettings } from "../lib/data/defaults";
 import {
@@ -23,6 +24,7 @@ import {
   defaultFaqs,
   defaultEvents,
   defaultAchievements,
+  defaultGalleryAlbums,
 } from "../lib/data/seed-content";
 
 async function main() {
@@ -72,6 +74,9 @@ async function main() {
 
   await Achievement.deleteMany({});
   await Achievement.insertMany(defaultAchievements);
+
+  await GalleryAlbum.deleteMany({});
+  await GalleryAlbum.insertMany(defaultGalleryAlbums);
 
   await PageSection.deleteMany({ pageSlug: "home" });
   await PageSection.insertMany([

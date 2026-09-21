@@ -15,6 +15,8 @@ import {
   Sponsor,
   Page,
   PageSection,
+  GalleryAlbum,
+  GalleryImage,
   type ISiteSettings,
   type IProgram,
   type IPricingPlan,
@@ -27,8 +29,11 @@ import {
   type ISponsor,
   type IPage,
   type IPageSection,
+  type IGalleryAlbum,
+  type IGalleryImage,
 } from "@/models/schemas";
 import { defaultSiteSettings } from "@/lib/data/defaults";
+import { driveManifest } from "@/lib/images/drive-assets";
 import {
   defaultPrograms,
   defaultPricing,
@@ -38,7 +43,17 @@ import {
   defaultFaqs,
   defaultEvents,
   defaultAchievements,
+  defaultGalleryAlbums,
 } from "@/lib/data/seed-content";
+import { driveGalleryCover, driveGalleryImages } from "@/lib/images/drive-assets";
+
+function withDriveCoachPhotos(coaches: ICoach[]): ICoach[] {
+  const posters = driveManifest.coaches as Record<string, string | undefined>;
+  return coaches.map((c) => ({
+    ...c,
+    photo: posters[c.name] ?? c.photo,
+  }));
+}
 
 function lean<T>(doc: unknown): T {
   return JSON.parse(JSON.stringify(doc)) as T;
@@ -46,14 +61,26 @@ function lean<T>(doc: unknown): T {
 
 export async function getSiteSettings(): Promise<ISiteSettings> {
   noStore();
-  if (!isDbConfigured()) return defaultSiteSettings;
+  if (!isDbConfigured()) {
+    return {
+      ...defaultSiteSettings,
+      heroBackgroundImage: driveManifest.welcomeHero || defaultSiteSettings.heroBackgroundImage,
+    };
+  }
   try {
     await connectDB();
     const doc = await SiteSettings.findOne().lean();
     if (!doc) return defaultSiteSettings;
-    return lean<ISiteSettings>(doc);
+    const settings = lean<ISiteSettings>(doc);
+    if (!settings.heroBackgroundImage) {
+      settings.heroBackgroundImage = driveManifest.welcomeHero || defaultSiteSettings.heroBackgroundImage;
+    }
+    return settings;
   } catch {
-    return defaultSiteSettings;
+    return {
+      ...defaultSiteSettings,
+      heroBackgroundImage: driveManifest.welcomeHero || defaultSiteSettings.heroBackgroundImage,
+    };
   }
 }
 
@@ -99,13 +126,13 @@ export async function getPricingPlans(): Promise<IPricingPlan[]> {
 
 export async function getCoaches(): Promise<ICoach[]> {
   noStore();
-  if (!isDbConfigured()) return defaultCoaches;
+  if (!isDbConfigured()) return withDriveCoachPhotos(defaultCoaches);
   try {
     await connectDB();
     const docs = await Coach.find({ published: true }).sort({ order: 1 }).lean();
-    return docs.length ? lean(docs) : defaultCoaches;
+    return docs.length ? withDriveCoachPhotos(lean(docs)) : withDriveCoachPhotos(defaultCoaches);
   } catch {
-    return defaultCoaches;
+    return withDriveCoachPhotos(defaultCoaches);
   }
 }
 
@@ -244,4 +271,41 @@ export async function getPageSections(pageSlug: string): Promise<IPageSection[]>
 
 export async function getHomeSections(): Promise<IPageSection[]> {
   return getPageSections("home");
+}
+
+export async function getGalleryAlbums(): Promise<IGalleryAlbum[]> {
+  noStore();
+  const mergeCovers = (albums: IGalleryAlbum[]) =>
+    albums.map((a) => ({
+      ...a,
+      coverImage: driveGalleryCover(a.slug) || a.coverImage,
+    }));
+
+  if (!isDbConfigured()) return mergeCovers(defaultGalleryAlbums);
+  try {
+    await connectDB();
+    const docs = await GalleryAlbum.find({ published: true }).sort({ order: 1 }).lean();
+    return docs.length ? mergeCovers(lean(docs)) : mergeCovers(defaultGalleryAlbums);
+  } catch {
+    return mergeCovers(defaultGalleryAlbums);
+  }
+}
+
+export async function getGalleryAlbumBySlug(slug: string): Promise<IGalleryAlbum | null> {
+  const albums = await getGalleryAlbums();
+  return albums.find((a) => a.slug === slug) ?? null;
+}
+
+export async function getGalleryImages(albumSlug: string): Promise<IGalleryImage[]> {
+  noStore();
+  const fromDrive = driveGalleryImages(albumSlug);
+  if (!isDbConfigured()) return fromDrive;
+  try {
+    await connectDB();
+    const docs = await GalleryImage.find({ albumSlug }).sort({ order: 1 }).lean();
+    if (docs.length) return lean(docs);
+    return fromDrive;
+  } catch {
+    return fromDrive;
+  }
 }

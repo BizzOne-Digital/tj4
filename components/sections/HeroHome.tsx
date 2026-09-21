@@ -8,6 +8,8 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import type { ISiteSettings } from "@/models/schemas";
 import { siteImages } from "@/lib/data/site-images";
+import { isDriveAssetUrl } from "@/lib/images/drive-assets";
+import { cn } from "@/lib/utils/cn";
 
 export function HeroHome({ settings }: { settings: ISiteSettings }) {
   const ref = useRef<HTMLElement>(null);
@@ -16,7 +18,7 @@ export function HeroHome({ settings }: { settings: ISiteSettings }) {
 
   const bg = settings.heroBackgroundImage || siteImages.hero;
   const bgSrc = resolveImageSrc(bg);
-  const heroUnoptimized = bg.startsWith("/api/uploads/");
+  const heroUnoptimized = bg.startsWith("/api/uploads/") || isDriveAssetUrl(bg);
 
   return (
     <section ref={ref} className="section-clip relative min-h-[calc(100dvh-var(--header-offset,3.25rem))] overflow-hidden">
@@ -27,7 +29,11 @@ export function HeroHome({ settings }: { settings: ISiteSettings }) {
           fill
           priority
           unoptimized={heroUnoptimized}
-          className="object-cover object-[center_30%] sm:object-center"
+          className={cn(
+            isDriveAssetUrl(bg)
+              ? "object-contain object-center bg-midnight"
+              : "object-cover object-[center_30%] sm:object-center"
+          )}
           sizes="100vw"
         />
       </motion.div>
@@ -53,10 +59,9 @@ export function HeroHome({ settings }: { settings: ISiteSettings }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.7 }}
-          className="max-w-4xl break-words text-[2.35rem] leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
+          className="max-w-4xl break-words text-[1.65rem] leading-[1.05] sm:text-4xl md:text-5xl lg:text-6xl"
         >
-          BUILDING THE NEXT GENERATION OF{" "}
-          <span className="text-gradient-electric">LIONS</span>
+          {settings.siteName}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -70,9 +75,9 @@ export function HeroHome({ settings }: { settings: ISiteSettings }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.65 }}
-          className="mt-4 max-w-2xl text-sm text-steel sm:mt-6 sm:text-base md:text-lg"
+          className="mt-4 max-w-2xl text-sm italic text-steel sm:mt-6 sm:text-base md:text-lg"
         >
-          Fundamentally sound. High-IQ. Built for the court—and beyond.
+          &ldquo;{settings.mission}&rdquo;
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { InnerHero } from "@/components/sections/InnerHero";
+import { ProseBlock } from "@/components/sections/ProseBlock";
 import { getPrograms } from "@/lib/data/queries";
 import { siteImages, programImageByIndex } from "@/lib/data/site-images";
+import { programsIntro, travelTeamsCopy } from "@/lib/content/lions-copy";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description: "AAU, travel, camps, clinics, and development programs for Central PA Lions athletes.",
+  description: "Camps, clinics, AAU, travel teams, and K-12 development programs.",
 };
 
 export default async function ProgramsPage() {
@@ -17,11 +19,20 @@ export default async function ProgramsPage() {
     <>
       <InnerHero
         eyebrow="Programs"
-        title="Every Path To Growth"
-        description="From youth introduction to competitive AAU — intentional development at every level."
+        title="Development Led by USAB Gold Certified Coaches"
+        description="From novice to advanced — learn the game and take skills to the next level on and off the court."
         image={siteImages.trainingCourt}
       />
       <section className="section-y">
+        <div className="mx-auto max-w-3xl page-x">
+          <ProseBlock paragraphs={programsIntro} />
+          <div className="mt-10 gradient-card p-6 clip-angle">
+            <h2 className="text-2xl uppercase">Travel Teams</h2>
+            <p className="mt-4 text-sm leading-relaxed text-steel">{travelTeamsCopy}</p>
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-white/10 section-y">
         <div className="mx-auto grid max-w-7xl gap-6 page-x md:grid-cols-2">
           {programs.map((program, index) => (
             <Link

@@ -3,9 +3,10 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { getPricingPlans, getSiteSettings } from "@/lib/data/queries";
 import { siteImages } from "@/lib/data/site-images";
 import { Button } from "@/components/ui/Button";
+import { SQUARE_SITE_URL } from "@/lib/content/lions-copy";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Program Fees",
   description: "Central PA Lions Academy registration fees and enrollment information.",
 };
 
@@ -15,14 +16,20 @@ export default async function PricingPage() {
   return (
     <>
       <InnerHero
-        eyebrow="Registration Fees"
-        title="Clear. Fair. Family-Friendly."
+        eyebrow="Program Fees"
+        title="Program Pricing to Join Our Family"
         description="Non-refundable registration fees due upon enrollment."
         image={siteImages.achievements}
       />
       <section className="section-y">
         <div className="mx-auto max-w-7xl page-x">
-          <div className="grid gap-6 md:grid-cols-3">
+          <p className="max-w-2xl text-steel">The non-refundable fees are as follows:</p>
+          <ul className="mt-4 space-y-2 text-steel">
+            <li>• $400 (individual)</li>
+            <li>• $700 (2 person family)</li>
+            <li>• $1,050 (3 person family)</li>
+          </ul>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {plans.map((plan, i) => (
               <div
                 key={plan.name}
@@ -31,23 +38,21 @@ export default async function PricingPage() {
                 <p className="text-sm uppercase tracking-widest text-steel">{plan.name}</p>
                 <p className="mt-3 text-4xl font-[family-name:var(--font-display)] sm:text-6xl">${plan.price}</p>
                 <p className="mt-2 text-sm text-steel">{plan.description}</p>
-                <ul className="mt-6 space-y-2 text-sm text-steel">
-                  {plan.features.map((f) => (
-                    <li key={f}>• {f}</li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
-          <div className="mt-10 rounded-xl border border-amber-400/30 bg-amber-400/10 p-6 text-sm text-steel">
+          <div className="mt-10 rounded-xl border border-amber-400/30 bg-amber-400/10 p-6 text-sm leading-relaxed text-steel">
             {settings.registrationNotice}
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <Button href="/register" fullWidth>
-              Start Registration
+            <Button href={SQUARE_SITE_URL} fullWidth>
+              Pay Online (Square)
             </Button>
-            <Button href="/faq" variant="secondary" fullWidth>
-              Registration FAQ
+            <Button href="/register" variant="secondary" fullWidth>
+              Join Our Team
+            </Button>
+            <Button href="/tryouts" variant="ghost" fullWidth>
+              Tryout Information
             </Button>
           </div>
         </div>

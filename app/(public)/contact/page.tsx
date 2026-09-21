@@ -15,9 +15,9 @@ export default async function ContactPage() {
   return (
     <>
       <InnerHero
-        eyebrow="Contact"
-        title="Let's Connect"
-        description={settings.contact.serviceArea}
+        eyebrow="Contact Us"
+        title="We Are Here to Help"
+        description="If you have any questions about our academy, please do not hesitate to contact us!"
         image={siteImages.courtCenter}
       />
       <section className="section-y">

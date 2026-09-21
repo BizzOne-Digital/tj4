@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { InnerHero } from "@/components/sections/InnerHero";
+import { ProseBlock } from "@/components/sections/ProseBlock";
 import { getSiteSettings } from "@/lib/data/queries";
-import { Button } from "@/components/ui/Button";
 import { siteImages } from "@/lib/data/site-images";
-import { SplitImagePanel } from "@/components/sections/SectionImagery";
+import {
+  aboutAcademyIntro,
+  seasonMission,
+  teamCultureBlocks,
+  visionFull,
+} from "@/lib/content/lions-copy";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "History, mission, and culture of TJ Anderson's Central PA Lions Academy.",
+  title: "About the Academy",
+  description: "History, mission, vision, and culture of TJ Anderson's Central PA Lions Academy.",
 };
 
 const timeline = [
@@ -35,21 +41,13 @@ export default async function AboutPage() {
     <>
       <InnerHero
         eyebrow="About the Academy"
-        title="Excellence Is A Habit"
+        title="TJ Anderson's Central PA Lions Academy"
         description="Youth basketball for grades K–12 — developing athletes on and off the court across Central Pennsylvania."
         image={siteImages.courtCenter}
       />
       <section className="section-y">
-        <div className="mx-auto max-w-7xl page-x">
-          <div className="overflow-hidden rounded-2xl border border-white/10 gradient-card">
-            <SplitImagePanel src={siteImages.arenaTunnel} alt="Central PA Lions arena">
-              <p className="text-xs uppercase tracking-[0.3em] text-electric">Our Story</p>
-              <h2 className="mt-2 text-3xl">From Huntingdon Cats to Central PA Lions</h2>
-              <p className="mt-4 text-steel">
-                A program built on community, development, and competing with class across Central Pennsylvania.
-              </p>
-            </SplitImagePanel>
-          </div>
+        <div className="mx-auto max-w-3xl page-x">
+          <ProseBlock paragraphs={aboutAcademyIntro} />
         </div>
       </section>
 
@@ -70,30 +68,34 @@ export default async function AboutPage() {
       </section>
 
       <section className="section-y">
-        <div className="mx-auto grid max-w-7xl gap-10 page-x lg:grid-cols-2">
+        <div className="mx-auto max-w-3xl page-x space-y-10">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-electric">Vision</p>
-            <p className="mt-4 text-lg text-steel">{settings.vision}</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-electric">Mission, Vision &amp; Team Culture</p>
+            <h2 className="mt-3 text-3xl">Season Mission</h2>
+            <p className="mt-4 text-steel leading-relaxed">{seasonMission}</p>
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-electric">Team Culture</p>
-            <ul className="mt-4 space-y-3 text-steel">
-              {[
-                "Winning begins with intentional daily choices.",
-                "Preparation and discipline create confidence.",
-                "Hard work is required in the classroom and on the court.",
-                "Development beyond basketball is as important as athletic success.",
-              ].map((line) => (
-                <li key={line}>• {line}</li>
+            <h2 className="text-2xl uppercase sm:text-3xl">Vision</h2>
+            <p className="mt-4 text-steel leading-relaxed">{visionFull}</p>
+          </div>
+          <div>
+            <h2 className="text-2xl uppercase sm:text-3xl">Team Culture</h2>
+            <div className="mt-6 space-y-8">
+              {teamCultureBlocks.map((block) => (
+                <div key={block.quote} className="gradient-card p-6 clip-angle">
+                  <p className="text-lg font-semibold text-white">&ldquo;{block.quote}&rdquo;</p>
+                  <p className="mt-3 text-sm text-steel leading-relaxed">{block.body}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
+          <p className="text-sm text-steel">{settings.mission}</p>
         </div>
       </section>
 
       <section className="section-y text-center">
         <Button href="/register" fullWidth className="mx-auto sm:w-auto">
-          Join the Academy
+          Join Our Team
         </Button>
       </section>
     </>

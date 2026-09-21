@@ -8,18 +8,26 @@ export function InnerHero({
   description,
   image,
   imageAlt = "Central PA Lions basketball",
+  imageFit = "cover",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   image?: string;
   imageAlt?: string;
+  /** Use "contain" for roster/posters so faces are not cropped. */
+  imageFit?: "cover" | "contain";
 }) {
+  const imageClass =
+    imageFit === "contain"
+      ? "object-contain object-center bg-midnight/90"
+      : "object-cover object-center";
+
   return (
     <section className="section-clip relative overflow-hidden border-b border-white/10 py-12 sm:py-16 md:py-20 lg:py-24">
       {image ? (
         <>
-          <SafeImage src={image} alt={imageAlt} fill priority className="object-cover" sizes="100vw" />
+          <SafeImage src={image} alt={imageAlt} fill priority className={imageClass} sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-midnight/95 via-midnight/80 to-midnight/55" />
           <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/30 to-navy/25" />
         </>

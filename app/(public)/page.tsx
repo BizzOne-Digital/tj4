@@ -4,6 +4,7 @@ import { StatsSection } from "@/components/sections/StatsSection";
 import { ProgramsPreview } from "@/components/sections/ProgramsPreview";
 import { MarqueeTicker } from "@/components/sections/MarqueeTicker";
 import { MissionBlock } from "@/components/sections/InnerHero";
+import { HomeWelcomeMedia } from "@/components/sections/HomeWelcomeMedia";
 import { Button } from "@/components/ui/Button";
 import {
   getSiteSettings,
@@ -18,7 +19,7 @@ import {
 } from "@/lib/data/queries";
 import Link from "next/link";
 import Image from "next/image";
-import { SafeImage } from "@/components/ui/SafeImage";
+import { PosterPhoto } from "@/components/ui/PersonPhoto";
 import { NewsletterSignup } from "@/components/forms/NewsletterSignup";
 import { siteImages } from "@/lib/data/site-images";
 import { SectionBackdrop } from "@/components/sections/SectionImagery";
@@ -48,6 +49,7 @@ export default async function HomePage() {
       <MarqueeTicker items={ticker.length ? ticker : ["Attitude & Effort", "Central PA Lions", "One Team One Goal"]} />
       <StatsSection stats={settings.stats || []} />
       <MissionBlock settings={settings} />
+      <HomeWelcomeMedia />
 
       <SectionBackdrop src={siteImages.trainingCourt} alt="Lions training on court" className="border-y border-white/10 section-y">
         <div className="relative mx-auto max-w-7xl page-x">
@@ -115,10 +117,12 @@ export default async function HomePage() {
             {coaches.map((coach) => (
               <div key={coach.name} className="glass-panel overflow-hidden">
                 {coach.photo && (
-                  <div className="relative h-40">
-                    <SafeImage src={coach.photo} alt={coach.photoAlt || coach.name} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal to-transparent" />
-                  </div>
+                  <PosterPhoto
+                    src={coach.photo}
+                    alt={coach.photoAlt || coach.name}
+                    frameClassName="rounded-none ring-0"
+                    sizes="(max-width:768px) 100vw, 33vw"
+                  />
                 )}
                 <div className="p-6">
                   <h3 className="text-xl uppercase sm:text-2xl">{coach.name}</h3>

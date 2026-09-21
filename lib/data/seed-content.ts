@@ -1,14 +1,17 @@
 import type {
   IProgram,
   IPricingPlan,
-  ICoach,
   ITestimonial,
   IBlogPost,
   IFAQ,
   IEvent,
   IAchievement,
+  IGalleryAlbum,
 } from "@/models/schemas";
 import { programImageByIndex, siteImages } from "@/lib/data/site-images";
+import { defaultCoaches } from "@/lib/data/seed-coaches";
+
+export { defaultCoaches };
 
 export const defaultPrograms: IProgram[] = [
   {
@@ -200,38 +203,56 @@ export const defaultPricing: IPricingPlan[] = [
   },
 ];
 
-export const defaultCoaches: ICoach[] = [
+
+export const defaultGalleryAlbums: IGalleryAlbum[] = [
   {
-    name: "TJ Anderson",
-    title: "Founder, CEO & Head Coach",
-    bio: "TJ Anderson leads the Central PA Lions with a player-first philosophy rooted in discipline, development, and community impact.",
-    credentials: "Program founder and head coach",
-    experience: "Youth basketball leadership since 2011",
-    featured: true,
+    title: "2020-2021 Season",
+    slug: "2020-21",
+    description:
+      "Coach Anderson's first season leading the Lions. Meet the roster and revisit the team photos that started this era of Lions basketball.",
     order: 0,
     published: true,
-    photo: siteImages.benchGear,
-    photoAlt: "TJ Anderson coaching",
+    coverImage: siteImages.benchGear,
   },
   {
-    name: "Alan Robinson",
-    title: "Boys' Coach",
-    bio: "Coach Robinson emphasizes fundamentals, defensive effort, and respect for the game in every practice.",
-    experience: "Experienced boys' development coach",
-    featured: true,
+    title: "2021-2022 Season",
+    slug: "2021-22",
+    description: "Lions team photos from the 2021–2022 season.",
     order: 1,
     published: true,
-    photo: siteImages.trainingCourt,
+    coverImage: siteImages.trainingCourt,
   },
   {
-    name: "Bryan Kulick",
-    title: "Boys' Coach",
-    bio: "Coach Kulick helps athletes compete with confidence while building habits that translate beyond basketball.",
-    experience: "Competitive boys' training background",
-    featured: true,
+    title: "2022-2023 Season",
+    slug: "2022-23",
+    description: "Lions team photos from the 2022–2023 season.",
     order: 2,
     published: true,
-    photo: siteImages.lockerRoom,
+    coverImage: siteImages.courtCenter,
+  },
+  {
+    title: "2023-2024 Season",
+    slug: "2023-24",
+    description: "Lions team photos from the 2023–2024 season.",
+    order: 3,
+    published: true,
+    coverImage: siteImages.lockerRoom,
+  },
+  {
+    title: "2024-2025 Season",
+    slug: "2024-25",
+    description: "Lions team photos from the 2024–2025 season.",
+    order: 4,
+    published: true,
+    coverImage: siteImages.achievements,
+  },
+  {
+    title: "2025-2026 Season",
+    slug: "2025-26",
+    description: "Lions team photos from the 2025–2026 season.",
+    order: 5,
+    published: true,
+    coverImage: siteImages.shootingMachine,
   },
 ];
 
@@ -437,7 +458,7 @@ export const defaultFaqs: IFAQ[] = [
   {
     question: "How do I contact a coach about my athlete’s placement?",
     answer:
-      "Call 814-500-8613, email tjandersty@gmail.com, or use the Contact page. Include your athlete’s name, grade, experience level, and programs you are interested in. We respond as quickly as possible during active registration periods.",
+      "Call 814-500-8613, email contact@centralpalions.com, or use the Contact page. Include your athlete’s name, grade, experience level, and programs you are interested in. We respond as quickly as possible during active registration periods.",
     categorySlug: "registration",
     order: 10,
     visible: true,
@@ -454,30 +475,116 @@ export const defaultFaqs: IFAQ[] = [
 
 export const defaultEvents: IEvent[] = [
   {
-    title: "Season Tryout Sessions",
-    slug: "season-tryouts",
-    description: "Open evaluations for prospective Lions athletes. Register online to reserve your spot.",
-    date: new Date("2026-03-01"),
-    location: "Central Pennsylvania",
+    title: "Ballin@ The Bridge — Bridgeport, WV",
+    slug: "ballin-at-the-bridge-2026",
+    description: "March 28–29 · 2nd Annual Ballin@ The Bridge at The Bridge Sports Complex.",
+    date: new Date("2026-03-28"),
+    endDate: new Date("2026-03-29"),
+    location: "Bridgeport, WV",
+    type: "tournament",
+    featured: true,
+    published: true,
+  },
+  {
+    title: "April Keyser Classic",
+    slug: "keyser-classic-2026",
+    description: "April 18–19 · Keyser, WV.",
+    date: new Date("2026-04-18"),
+    endDate: new Date("2026-04-19"),
+    location: "Keyser, WV",
+    type: "tournament",
+    featured: true,
+    published: true,
+  },
+  {
+    title: "May Mayhem Classic @ Spooky Nook",
+    slug: "may-mayhem-2026",
+    description: "May 2–3 · Manheim, PA.",
+    date: new Date("2026-05-02"),
+    endDate: new Date("2026-05-03"),
+    location: "Manheim, PA",
+    type: "tournament",
+    featured: true,
+    published: true,
+  },
+  {
+    title: "NVSC Roundball Classic",
+    slug: "nvsc-roundball-2026",
+    description: "May 30–31 · State College, PA.",
+    date: new Date("2026-05-30"),
+    endDate: new Date("2026-05-31"),
+    location: "State College, PA",
+    type: "tournament",
+    featured: false,
+    published: true,
+  },
+  {
+    title: "The Final Showdown @ Spooky Nook",
+    slug: "final-showdown-2026",
+    description: "June 13–14 · Manheim, PA.",
+    date: new Date("2026-06-13"),
+    endDate: new Date("2026-06-14"),
+    location: "Manheim, PA",
+    type: "tournament",
+    featured: false,
+    published: true,
+  },
+  {
+    title: "Fall Tryouts — Grades 3–12",
+    slug: "tryouts-fall-2026",
+    description:
+      "Saturday, October 17, 2026 at Philipsburg-Osceola Middle School. Registration packet due Saturday, October 4, 2026.",
+    date: new Date("2026-10-17"),
+    location: "200 Short Street, Philipsburg, PA 16866",
     type: "tryout",
     featured: true,
     published: true,
-    registrationLink: "/register",
+    registrationLink: "/tryouts",
+  },
+  {
+    title: "Winter Tryouts — Grades 3–12",
+    slug: "tryouts-winter-2027",
+    description:
+      "Sunday, February 14, 2027 at Philipsburg-Osceola Middle School. Registration packet due Sunday, February 7, 2027.",
+    date: new Date("2027-02-14"),
+    location: "200 Short Street, Philipsburg, PA 16866",
+    type: "tryout",
+    featured: false,
+    published: true,
+    registrationLink: "/tryouts",
   },
 ];
 
 export const defaultAchievements: IAchievement[] = [
   {
-    title: "Committed to Central PA Youth Development",
-    year: "2011–Present",
-    description: "Evolving from Huntingdon Cats to Central PA Lions with community-first leadership.",
+    title: "Ocean City · WV · XGen · Keyser · Tucker · State College",
+    year: "2020–Present",
+    description: "Championship culture across PA, WV, MD, and NY.",
     order: 0,
     published: true,
   },
   {
-    title: "Character-Driven Competitive Culture",
-    description: "Athletes trained to compete with class and lead with purpose.",
+    title: "2023 NY X-Gen Girls Championship",
+    year: "2023",
     order: 1,
+    published: true,
+  },
+  {
+    title: "2025 Keyser WV Classic & Tucker WV Titles",
+    year: "2025",
+    order: 2,
+    published: true,
+  },
+  {
+    title: "2026 Keyser WV Classic & State College Elementary",
+    year: "2026",
+    order: 3,
+    published: true,
+  },
+  {
+    title: "One Team · One Goal · One Purpose",
+    description: "Character-based coaching since 2011.",
+    order: 4,
     published: true,
   },
 ];

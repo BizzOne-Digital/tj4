@@ -10,6 +10,8 @@
     "lint": "eslint",
     "seed": "tsx scripts/seed.ts",
     "seed:testimonials-faqs": "tsx scripts/seed-testimonials-faqs.ts",
+    "seed:client-content": "tsx scripts/seed-client-content.ts",
+    "generate:drive-manifest": "tsx scripts/generate-drive-manifest.ts",
     "create-admin": "tsx scripts/create-admin.ts",
     "test:smtp": "tsx scripts/test-smtp.ts"
   },

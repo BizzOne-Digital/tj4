@@ -1,5 +1,6 @@
 import type { ISiteSettings } from "@/models/schemas";
 import { siteImages } from "@/lib/data/site-images";
+import { driveManifest } from "@/lib/images/drive-assets";
 
 export const defaultSiteSettings: ISiteSettings = {
   _id: "default",
@@ -18,8 +19,9 @@ export const defaultSiteSettings: ISiteSettings = {
   contact: {
     name: "TJ Anderson",
     phone: "814-500-8613",
-    email: "tjandersty@gmail.com",
-    serviceArea: "Central Pennsylvania — Centre County and surrounding communities",
+    email: "contact@centralpalions.com",
+    serviceArea: "Serving Central PA from Centre County",
+    address: "7410 Sportsman Road, Alexandria, PA 16611",
   },
   social: {
     facebook: "https://www.facebook.com/share/1BmctvmxTA/?mibextid=wwXIfr",
@@ -27,13 +29,14 @@ export const defaultSiteSettings: ISiteSettings = {
     twitter: "https://twitter.com/CentralPALions",
   },
   donation: {
-    url: "https://www.centralpalions.com/donate",
-    mailingInstructions: "Contact the academy for mailing instructions for offline donations.",
+    url: "https://centralpalions.square.site/",
+    mailingInstructions:
+      "Make a check or money order payable to Central PA Lions and mail to: Central PA Lions, 7410 Sportsman Road, Alexandria, PA 16611. For corporate sponsorships, email contact@centralpalions.com.",
     levels: [25, 50, 75, 100, 150, 250, 500, 1000],
   },
   registrationDeadline: "February 28, 2027",
   registrationNotice:
-    "The registration fee is non-refundable and is due upon enrollment in the program and no later than February 28, 2027.",
+    "The registration fee is non-refundable and is due upon enrollment in the program and no later than February 28, 2027. As a team, we will be conducting fundraisers for our program. The fundraiser opt-out fee is a $200 non-refundable fee for student-athletes to participate in the program. Pay securely at centralpalions.square.site or mail a check payable to Central PA Lions to 7410 Sportsman Road, Alexandria, PA 16611.",
   seo: {
     defaultTitle: "Central PA Lions Academy | Youth Basketball in Central PA",
     defaultDescription:
@@ -41,7 +44,7 @@ export const defaultSiteSettings: ISiteSettings = {
     ogImage: "/images/arena-tunnel.jpg",
   },
   branding: { primaryColor: "#10176F", accentColor: "#2436D8" },
-  heroBackgroundImage: siteImages.hero,
+  heroBackgroundImage: driveManifest.welcomeHero || siteImages.hero,
   stats: [
     { label: "Years of Development", value: 14, suffix: "+" },
     { label: "Programs Offered", value: 9 },
@@ -51,17 +54,27 @@ export const defaultSiteSettings: ISiteSettings = {
   navigation: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
+    { label: "Coaches", href: "/team" },
     { label: "Programs", href: "/programs" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Team", href: "/team" },
-    { label: "News", href: "/news" },
+    { label: "Join", href: "/register" },
     {
       label: "More",
       href: "#",
       children: [
-        { label: "Testimonials", href: "/testimonials" },
+        { label: "Meet the Lions", href: "/meet-the-lions" },
+        { label: "Gear Store", href: "/gear" },
+        { label: "Schedule", href: "/schedule" },
+        { label: "Tryouts", href: "/tryouts" },
+        { label: "Championships", href: "/championships" },
+        { label: "Cash Bash", href: "/cash-bash" },
+        { label: "Fundraising", href: "/fundraising" },
+        { label: "Articles", href: "/articles" },
+        { label: "Alumni", href: "/alumni" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Donate", href: "/donate" },
+        { label: "News", href: "/news" },
         { label: "FAQ", href: "/faq" },
-        { label: "Support", href: "/donate" },
+        { label: "Testimonials", href: "/testimonials" },
         { label: "Contact", href: "/contact" },
       ],
     },
@@ -71,25 +84,26 @@ export const defaultSiteSettings: ISiteSettings = {
       title: "Academy",
       links: [
         { label: "About", href: "/about" },
+        { label: "Meet the Coaches", href: "/team" },
         { label: "Programs", href: "/programs" },
+        { label: "Join Our Team", href: "/register" },
+      ],
+    },
+    {
+      title: "Season",
+      links: [
+        { label: "Schedule", href: "/schedule" },
+        { label: "Tryouts", href: "/tryouts" },
+        { label: "Meet the Lions", href: "/meet-the-lions" },
+        { label: "Championships", href: "/championships" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { label: "Fundraising", href: "/fundraising" },
+        { label: "Donate", href: "/donate" },
         { label: "Pricing", href: "/pricing" },
-        { label: "Register", href: "/register" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "News", href: "/news" },
-        { label: "FAQ", href: "/faq" },
-        { label: "Testimonials", href: "/testimonials" },
-        { label: "Support", href: "/donate" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { label: "Privacy Policy", href: "/privacy" },
-        { label: "Terms", href: "/terms" },
         { label: "Contact", href: "/contact" },
       ],
     },

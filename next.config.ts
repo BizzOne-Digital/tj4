@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       {
         pathname: "/images/**",
       },
+      {
+        pathname: "/Central PA Lions AAU New Website -20260921T153347Z-1-001/**",
+      },
     ],
   },
   experimental: {

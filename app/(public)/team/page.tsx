@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { SafeImage } from "@/components/ui/SafeImage";
 import { InnerHero } from "@/components/sections/InnerHero";
+import { PosterPhoto } from "@/components/ui/PersonPhoto";
+import { MediaPlaceholder } from "@/components/sections/MediaPlaceholder";
 import { getCoaches } from "@/lib/data/queries";
 import { siteImages } from "@/lib/data/site-images";
 
 export const metadata: Metadata = {
-  title: "Our Team",
+  title: "Meet the Coaches",
   description: "Meet the Central PA Lions coaching staff.",
 };
 
@@ -15,25 +16,28 @@ export default async function TeamPage() {
   return (
     <>
       <InnerHero
-        eyebrow="Coaching Staff"
-        title="Built By Leaders"
-        description="Experienced coaches invested in player development and character."
+        eyebrow="Meet the Coaches"
+        title="One Team. One Family. One Purpose."
+        description="USAB Gold Certified coaches invested in player development and character."
         image={siteImages.lockerRoom}
       />
       <section className="section-y">
-        <div className="mx-auto grid max-w-7xl gap-8 page-x md:grid-cols-3">
+        <div className="mx-auto max-w-4xl space-y-16 page-x">
           {coaches.map((coach) => (
             <article key={coach.name} className="overflow-hidden border border-white/10 bg-charcoal/50 clip-angle">
-              <div className="relative h-64 bg-navy/40">
-                {coach.photo && (
-                  <SafeImage src={coach.photo} alt={coach.photoAlt || coach.name} fill className="object-cover" />
-                )}
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl uppercase sm:text-3xl">{coach.name}</h2>
-                <p className="text-sm text-electric">{coach.title}</p>
-                <p className="mt-4 text-sm text-steel">{coach.bio}</p>
-                {coach.credentials && <p className="mt-3 text-xs uppercase tracking-wider text-steel">{coach.credentials}</p>}
+              <div className="grid items-start gap-6 md:grid-cols-[minmax(0,300px)_1fr] md:gap-8">
+                <div className="mx-auto w-full max-w-[300px] md:mx-0">
+                  {coach.photo ? (
+                    <PosterPhoto src={coach.photo} alt={coach.photoAlt || coach.name} frameClassName="min-h-[360px]" />
+                  ) : (
+                    <MediaPlaceholder label={`Meet the Coaches / ${coach.name} / Poster`} aspect="poster" />
+                  )}
+                </div>
+                <div className="p-6 md:p-8 md:pt-6">
+                  <h2 className="text-2xl uppercase sm:text-3xl">{coach.name}</h2>
+                  <p className="text-sm text-electric">{coach.title}</p>
+                  <div className="mt-4 whitespace-pre-line text-sm leading-relaxed text-steel">{coach.bio}</div>
+                </div>
               </div>
             </article>
           ))}
