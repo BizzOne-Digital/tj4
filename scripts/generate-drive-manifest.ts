@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { toDrivePublicUrl } from "../lib/images/drive-public-url";
 
 const PUBLIC = path.join(process.cwd(), "public");
 const DRIVE_ROOT = path.join(
@@ -8,14 +9,10 @@ const DRIVE_ROOT = path.join(
   "Central PA Lions AAU New Website"
 );
 
-const WEB_PUBLIC_PREFIX =
-  "Central PA Lions AAU New Website -20260921T153347Z-1-001/Central PA Lions AAU New Website";
-
 const IMAGE_EXT = /\.(jpe?g|png|gif|webp)$/i;
 
 function toPublicUrl(relativeFromSite: string): string {
-  const segments = [WEB_PUBLIC_PREFIX, ...relativeFromSite.split(/[/\\]/).filter(Boolean)];
-  return "/" + segments.map((s) => encodeURIComponent(s)).join("/");
+  return toDrivePublicUrl(relativeFromSite);
 }
 
 function listFiles(dir: string, relative = ""): string[] {
