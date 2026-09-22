@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import type { ISiteSettings } from "@/models/schemas";
 
@@ -18,7 +17,7 @@ export function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -30,71 +29,77 @@ export function Navbar({
   const nav = settings.navigation?.length
     ? settings.navigation
     : [
-        { label: "Home", href: "/" },
         { label: "About", href: "/about" },
+        { label: "Join", href: "/register" },
       ];
 
   return (
     <>
       <header
         className={cn(
-          "w-full transition-all duration-500",
+          "w-full transition-all duration-300",
           !embedded && "fixed inset-x-0 top-0 z-50",
           embedded && "relative"
         )}
       >
         <div
           className={cn(
-            "mx-auto flex w-full max-w-7xl items-center justify-between gap-2 px-3 py-2 transition-all duration-500 sm:px-4 sm:py-2.5 lg:px-8",
-            scrolled || embedded
-              ? "border-b border-electric/20 bg-gradient-to-r from-midnight/98 via-navy/95 to-midnight/98 backdrop-blur-xl"
-              : "border-b border-white/10 bg-midnight/90 backdrop-blur-md md:rounded-none md:border-white/10",
-            !embedded && !scrolled && "md:mt-2 md:rounded-2xl md:border md:border-white/10 md:glass-panel"
+            "mx-auto flex w-full max-w-[1400px] items-center justify-between gap-3 px-3 py-2 sm:px-5 lg:px-8",
+            "border-b border-white/10 bg-midnight/95 backdrop-blur-md",
+            scrolled && "shadow-lg shadow-black/20"
           )}
         >
-          <Link href="/" className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-[60%] sm:flex-initial sm:gap-3">
+          <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
             <Image
               src="/images/logo.png"
               alt="Central PA Lions logo"
-              width={56}
-              height={56}
-              className="h-9 w-9 shrink-0 object-contain sm:h-12 sm:w-12"
+              width={48}
+              height={48}
+              className="h-8 w-8 shrink-0 object-contain sm:h-10 sm:w-10"
               priority
             />
-            <div className="min-w-0 leading-none">
-              <p className="truncate font-[family-name:var(--font-display)] text-sm tracking-wide text-white sm:text-lg">
+            <div className="hidden min-w-0 leading-tight sm:block">
+              <p className="truncate font-[family-name:var(--font-display)] text-xs tracking-wide text-white lg:text-sm">
                 CENTRAL PA LIONS
               </p>
-              <p className="truncate text-[9px] uppercase tracking-[0.15em] text-steel sm:text-[10px] sm:tracking-[0.25em]">
-                Youth Basketball Academy
+              <p className="truncate text-[8px] uppercase tracking-[0.2em] text-steel lg:text-[9px]">
+                {settings.motto || "Youth Basketball Academy"}
               </p>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-5 xl:gap-6 lg:flex">
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-3 lg:flex xl:gap-5">
             {nav.map((item) =>
               item.children?.length ? (
                 <div
                   key={item.label}
-                  className="relative"
-                  onMouseEnter={() => setMoreOpen(true)}
-                  onMouseLeave={() => setMoreOpen(false)}
+                  className="relative shrink-0"
+                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <button
                     type="button"
-                    className="flex items-center gap-1 text-xs font-semibold uppercase tracking-widest text-white/80 hover:text-white"
+                    className="flex items-center gap-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/85 transition-colors hover:text-white xl:text-[11px] xl:tracking-[0.2em]"
                   >
                     {item.label}
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className="h-3.5 w-3.5 opacity-70" />
                   </button>
-                  {moreOpen && (
-                    <div className="absolute right-0 top-full pt-3">
-                      <div className="min-w-[200px] rounded-xl border border-white/10 bg-charcoal/95 p-2 shadow-2xl">
+                  {openDropdown === item.label && (
+                    <div className="absolute left-1/2 top-full z-50 min-w-[220px] -translate-x-1/2 pt-2">
+                      <div className="max-h-[min(70vh,420px)] overflow-y-auto rounded-lg border border-white/10 bg-charcoal/98 p-1.5 shadow-2xl">
+                        {item.href && item.href !== "#" && (
+                          <Link
+                            href={item.href}
+                            className="block rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-wider text-electric hover:bg-white/5"
+                          >
+                            View all
+                          </Link>
+                        )}
                         {item.children.map((child) => (
                           <Link
-                            key={child.href}
+                            key={child.href + child.label}
                             href={child.href}
-                            className="block rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5 hover:text-white"
+                            className="block rounded-md px-3 py-2 text-sm text-white/85 hover:bg-white/5 hover:text-white"
                           >
                             {child.label}
                           </Link>
@@ -107,7 +112,7 @@ export function Navbar({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs font-semibold uppercase tracking-widest text-white/80 hover:text-white relative after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-electric after:transition-all hover:after:w-full"
+                  className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/85 transition-colors hover:text-white xl:text-[11px] xl:tracking-[0.2em]"
                 >
                   {item.label}
                 </Link>
@@ -116,9 +121,12 @@ export function Navbar({
           </nav>
 
           <div className="hidden shrink-0 lg:block">
-            <Button href="/register" variant="secondary">
-              Register Now
-            </Button>
+            <Link
+              href="/donate"
+              className="inline-flex min-h-[36px] items-center justify-center rounded-full bg-sky-300 px-5 text-[11px] font-bold uppercase tracking-[0.2em] text-midnight transition hover:bg-sky-200"
+            >
+              Support
+            </Link>
           </div>
 
           <button

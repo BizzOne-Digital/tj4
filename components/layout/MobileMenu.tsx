@@ -3,9 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { X, ChevronDown, Facebook, Instagram, Twitter, Phone, Mail } from "lucide-react";
+import { X, Facebook, Instagram, Twitter, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
 import type { ISiteSettings } from "@/models/schemas";
@@ -82,7 +82,6 @@ export function MobileMenu({
 }) {
   const pathname = usePathname();
   const { primary, moreSections } = useMobileNavStructure(settings);
-  const [moreOpen, setMoreOpen] = useState(true);
   const prevPath = useRef(pathname);
 
   const isActive = (href: string) => {
@@ -156,6 +155,7 @@ export function MobileMenu({
 
             <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-4 sm:px-4">
               <nav className="flex flex-col gap-1">
+                <NavLink href="/" label="Home" active={isActive("/")} onClose={onClose} />
                 {primary.map((link) => (
                   <NavLink
                     key={link.href}
@@ -168,38 +168,31 @@ export function MobileMenu({
 
                 {moreSections.map((section) => (
                   <div key={section.title} className="mt-2 border-t border-white/10 pt-3">
-                    <button
-                      type="button"
-                      onClick={() => setMoreOpen((v) => !v)}
-                      className="flex min-h-[44px] w-full items-center justify-between rounded-lg px-3 text-left text-xs font-semibold uppercase tracking-[0.2em] text-electric"
-                    >
+                    <p className="px-3 text-xs font-semibold uppercase tracking-[0.2em] text-electric">
                       {section.title}
-                      <ChevronDown className={cn("h-4 w-4 transition-transform", moreOpen && "rotate-180")} />
-                    </button>
-                    {moreOpen && (
-                      <div className="mt-1 flex flex-col gap-0.5 pl-1">
-                        {section.links.map((link) => (
-                          <NavLink
-                            key={link.href}
-                            href={link.href}
-                            label={link.label}
-                            active={isActive(link.href)}
-                            onClose={onClose}
-                            size="md"
-                          />
-                        ))}
-                      </div>
-                    )}
+                    </p>
+                    <div className="mt-1 flex flex-col gap-0.5 pl-1">
+                      {section.links.map((link) => (
+                        <NavLink
+                          key={link.href}
+                          href={link.href}
+                          label={link.label}
+                          active={isActive(link.href)}
+                          onClose={onClose}
+                          size="md"
+                        />
+                      ))}
+                    </div>
                   </div>
                 ))}
               </nav>
 
               <div className="mt-6 flex flex-col gap-3">
-                <Button href="/register" onClick={onClose} fullWidth>
-                  Register Now
+                <Button href="/donate" onClick={onClose} fullWidth>
+                  Support
                 </Button>
-                <Button href="/donate" variant="secondary" onClick={onClose} fullWidth>
-                  Support the Lions
+                <Button href="/register" variant="secondary" onClick={onClose} fullWidth>
+                  Join Our Team
                 </Button>
               </div>
 

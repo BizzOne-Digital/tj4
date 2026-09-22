@@ -13,8 +13,7 @@ export function AnnouncementBar({ settings }: { settings: ISiteSettings }) {
   );
 
   return (
-    <div className="relative border-b border-electric/20 bg-gradient-to-r from-midnight via-navy to-midnight">
-      <div className="relative border-b border-white/10 px-2 py-2.5 text-center sm:px-4 sm:py-2">
+    <div className="relative border-b border-white/10 bg-midnight px-2 py-2 text-center sm:px-4">
         {settings.announcementBar.link ? (
           <Link href={settings.announcementBar.link} className="block hover:text-electric transition-colors">
             {content}
@@ -22,7 +21,6 @@ export function AnnouncementBar({ settings }: { settings: ISiteSettings }) {
         ) : (
           content
         )}
-      </div>
     </div>
   );
 }
