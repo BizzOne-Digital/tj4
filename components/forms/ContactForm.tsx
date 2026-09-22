@@ -6,6 +6,8 @@ import { z } from "zod";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { submitContact } from "@/actions/public-forms";
+import { contactFormSuccessCopy } from "@/lib/content/lions-copy";
+import { FormSuccessPanel } from "@/components/forms/FormSuccessPanel";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -55,12 +57,7 @@ export function ContactForm({
   });
 
   if (status === "success") {
-    return (
-      <div className="rounded-xl border border-electric/30 bg-electric/10 p-8">
-        <h3 className="text-2xl uppercase">Message Sent</h3>
-        <p className="mt-2 text-steel">Our staff will respond as soon as possible.</p>
-      </div>
-    );
+    return <FormSuccessPanel title={contactFormSuccessCopy.title} body={contactFormSuccessCopy.body} />;
   }
 
   return (

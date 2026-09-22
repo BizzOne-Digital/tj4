@@ -197,6 +197,18 @@ export const tryoutSessions = [
   },
 ];
 
+export const formSubmissionSuccessCopy = {
+  title: "Inquiry Received",
+  body:
+    "Thank you for registering your interest in Central PA Lions Academy. Our staff has been notified and will contact you at the email or phone you provided—you will not receive an automatic confirmation email from this site.",
+};
+
+export const contactFormSuccessCopy = {
+  title: "Message Received",
+  body:
+    "Thank you for contacting Central PA Lions Academy. Our staff has been notified and will contact you at the email or phone you provided—you will not receive an automatic confirmation email from this site.",
+};
+
 export const sendMessagePageCopy = {
   eyebrow: "Send a Message",
   title: "Send a Message",

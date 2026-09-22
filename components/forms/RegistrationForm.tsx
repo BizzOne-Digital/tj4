@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/Button";
 import { submitRegistration } from "@/actions/public-forms";
+import { formSubmissionSuccessCopy } from "@/lib/content/lions-copy";
+import { FormSuccessPanel } from "@/components/forms/FormSuccessPanel";
 import type { IProgram } from "@/models/schemas";
 
 const fullSchema = z.object({
@@ -75,14 +77,10 @@ export function RegistrationForm({ programs }: { programs: IProgram[] }) {
 
   if (done) {
     return (
-      <div className="rounded-xl border border-electric/30 bg-electric/10 p-10 text-center">
-        <h2 className="text-4xl uppercase">Inquiry Received</h2>
-        <p className="mt-4 text-steel">
-          Thank you for registering your interest in Central PA Lions Academy. Our staff has been notified and will
-          contact you at the email or phone you provided—you will not receive an automatic confirmation email from this
-          site.
-        </p>
-      </div>
+      <FormSuccessPanel
+        title={formSubmissionSuccessCopy.title}
+        body={formSubmissionSuccessCopy.body}
+      />
     );
   }
 
