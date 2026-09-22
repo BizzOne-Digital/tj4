@@ -189,7 +189,7 @@ export function MobileMenu({
 
               <div className="mt-6 flex flex-col gap-3">
                 <Button href="/donate" onClick={onClose} fullWidth>
-                  Support
+                  Donate
                 </Button>
                 <Button href="/register" variant="secondary" onClick={onClose} fullWidth>
                   Join Our Team

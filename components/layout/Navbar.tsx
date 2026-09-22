@@ -125,7 +125,7 @@ export function Navbar({
               href="/donate"
               className="inline-flex min-h-[36px] items-center justify-center rounded-full bg-sky-300 px-5 text-[11px] font-bold uppercase tracking-[0.2em] text-midnight transition hover:bg-sky-200"
             >
-              Support
+              Donate
             </Link>
           </div>
 

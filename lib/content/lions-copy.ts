@@ -199,9 +199,17 @@ export const tryoutSessions = [
 
 export const sendMessagePageCopy = {
   eyebrow: "Send a Message",
-  title: "Send Message",
-  description: "Send us your questions and we will get back to you as soon as we can.",
+  title: "Send a Message",
+  description: "Send us your questions and information—we will get back to you as soon as we can.",
+  formIntro: "Tab to send information",
   submitLabel: "Send Message",
+  placeholders: {
+    name: "Name",
+    email: "Email",
+    phone: "Phone",
+    subject: "Subject",
+    message: "Message",
+  },
 };
 
 export const contactUsPageCopy = {
@@ -224,7 +232,7 @@ export const contactUsPageCopy = {
 
 export const donatePageCopy = {
   eyebrow: "Donate",
-  title: "Support Our Student-Athletes",
+  title: "Donate",
   intro:
     "Fundraising is vital for the success of our program. The funds raised will assist our program in the purchasing of new uniforms, equipment (such as shooting machines, balls, protective gear), and other pertinent expenses. Below are various fundraising levels for which you can support our student-athletes and our program.",
   sponsorshipNote:
