@@ -78,7 +78,9 @@ export function RegistrationForm({ programs }: { programs: IProgram[] }) {
       <div className="rounded-xl border border-electric/30 bg-electric/10 p-10 text-center">
         <h2 className="text-4xl uppercase">Inquiry Received</h2>
         <p className="mt-4 text-steel">
-          Thank you for registering your interest in Central PA Lions Academy. Our staff will contact you with next steps.
+          Thank you for registering your interest in Central PA Lions Academy. Our staff has been notified and will
+          contact you at the email or phone you provided—you will not receive an automatic confirmation email from this
+          site.
         </p>
       </div>
     );

@@ -20,7 +20,7 @@ export function SectionBackdrop({
         src={src}
         alt={alt}
         fill
-        className={drive ? "object-contain object-center bg-midnight" : "object-cover"}
+        className={drive ? "object-cover object-center" : "object-cover"}
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-midnight/95 via-midnight/80 to-midnight/70" />
@@ -53,7 +53,7 @@ export function SplitImagePanel({
           src={src}
           alt={alt}
           fill
-          className={isDriveAssetUrl(src) ? "object-contain object-center bg-midnight" : "object-cover"}
+          className="object-cover object-center"
           sizes="(max-width:1024px) 100vw, 50vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-midnight/60 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-midnight/30" />

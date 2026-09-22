@@ -22,17 +22,12 @@ export default function AlumniPage() {
         title={copy.title}
         description={copy.intro}
         image={heroImage}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-5xl space-y-10 page-x">
           <p className="text-center text-base leading-relaxed text-steel sm:text-lg">{copy.intro}</p>
           {driveManifest.alumni.length > 0 ? (
-            <DriveImageGrid
-              images={driveManifest.alumni}
-              altPrefix="Lions alumni"
-              columns="grid-cols-2 md:grid-cols-3"
-            />
+            <DriveImageGrid images={driveManifest.alumni} altPrefix="Lions alumni" />
           ) : (
             <MediaPlaceholder
               label="Alumni — add JPG/PNG to ALUMNI/PICTURES in Drive folder"

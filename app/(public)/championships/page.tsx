@@ -26,7 +26,6 @@ export default function ChampionshipsPage() {
         title={copy.title}
         description={copy.intro}
         image={hero}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-5xl space-y-14 page-x">
@@ -39,7 +38,7 @@ export default function ChampionshipsPage() {
                 <h2 className="text-2xl uppercase">{title}</h2>
                 <div className="mt-6">
                   {images.length > 0 ? (
-                    <DriveImageGrid images={images} altPrefix={title} columns="grid-cols-2 md:grid-cols-3" />
+                    <DriveImageGrid images={images} altPrefix={title} />
                   ) : (
                     <MediaPlaceholder label={`${title} — add pictures to Drive folder`} aspect="video" />
                   )}

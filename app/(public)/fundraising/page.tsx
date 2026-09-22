@@ -23,7 +23,6 @@ export default function FundraisingPage() {
         title={copy.title}
         description={copy.whyBody}
         image={drivePageHero("fundraising")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-12 page-x">
@@ -63,7 +62,7 @@ export default function FundraisingPage() {
                 <DriveImageGrid
                   images={driveManifest.pick3}
                   altPrefix="Pick 3 Lottery"
-                  columns="grid-cols-1 sm:grid-cols-2"
+                  columns="grid-cols-1"
                 />
               </div>
             ) : (

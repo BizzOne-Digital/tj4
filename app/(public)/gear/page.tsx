@@ -17,16 +17,19 @@ export default function GearPage() {
         title="Lions Basketball Gear"
         description="Official Lions Basketball gear for the 2027 Summer season."
         image={driveManifest.gear[0] || siteImages.benchGear}
-        imageFit="contain"
       />
       <section className="section-y">
-        <div className="mx-auto max-w-3xl space-y-10 page-x">
+        <div className="mx-auto max-w-5xl space-y-10 page-x">
           <p className="text-center text-base leading-relaxed text-steel sm:text-lg">
             Official Lions Basketball gear for the 2027 Summer season.
           </p>
 
           {driveManifest.gear.length > 0 && (
-            <DriveImageGrid images={driveManifest.gear} altPrefix="Lions gear" columns="grid-cols-1 sm:grid-cols-2" />
+            <DriveImageGrid
+              images={driveManifest.gear}
+              altPrefix="Game One — Lions gear contact"
+              featured
+            />
           )}
 
           <div className="gradient-card p-8 text-center clip-angle sm:p-10">

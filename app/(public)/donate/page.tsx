@@ -23,7 +23,6 @@ export default function DonatePage() {
         title={copy.title}
         description={copy.intro}
         image={drivePageHero("donate")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-8 page-x text-steel">

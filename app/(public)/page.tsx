@@ -102,7 +102,7 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="relative min-h-[240px] overflow-hidden clip-angle ring-1 ring-electric/30 sm:min-h-[320px]">
-              <SafeImage src={driveMainImage(4)} alt="Lions skill development" fill className="object-contain object-center bg-midnight" />
+              <SafeImage src={driveMainImage(4)} alt="Lions skill development" fill className="object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-electric/10" />
             </div>
           </div>
@@ -238,7 +238,7 @@ export default async function HomePage() {
       />
 
       <section className="section-clip relative overflow-hidden py-16 sm:py-24">
-        <SafeImage src={driveMainImage(6)} alt="" fill className="object-contain object-center bg-midnight" sizes="100vw" />
+        <SafeImage src={driveMainImage(6)} alt="" fill className="object-cover object-center" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-r from-midnight/90 via-midnight/75 to-electric/25" />
         <div className="mesh-orb left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 bg-electric/20 sm:h-[500px] sm:w-[500px]" />
         <div className="relative mx-auto max-w-4xl page-x text-center">

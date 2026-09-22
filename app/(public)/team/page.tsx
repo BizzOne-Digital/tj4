@@ -26,13 +26,17 @@ export default async function TeamPage() {
         imageFit="contain"
       />
       <section className="section-y">
-        <div className="mx-auto max-w-4xl space-y-16 page-x">
+        <div className="mx-auto max-w-5xl space-y-16 page-x">
           {coaches.map((coach) => (
             <article key={coach.name} className="overflow-hidden border border-white/10 bg-charcoal/50 clip-angle">
-              <div className="grid items-start gap-6 md:grid-cols-[minmax(0,300px)_1fr] md:gap-8">
-                <div className="mx-auto w-full max-w-[300px] md:mx-0">
+              <div className="grid items-start gap-0 md:grid-cols-[minmax(0,440px)_1fr] md:gap-8">
+                <div className="w-full">
                   {coach.photo ? (
-                    <PosterPhoto src={coach.photo} alt={coach.photoAlt || coach.name} frameClassName="min-h-[360px]" />
+                    <PosterPhoto
+                      src={coach.photo}
+                      alt={coach.photoAlt || coach.name}
+                      frameClassName="rounded-none ring-0 w-full max-w-none"
+                    />
                   ) : (
                     <MediaPlaceholder label={`Meet the Coaches / ${coach.name} / Poster`} aspect="poster" />
                   )}

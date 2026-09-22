@@ -26,7 +26,6 @@ export default function TryoutsPage() {
         title={copy.title}
         description={copy.location}
         image={drivePageHero("tryouts")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-10 page-x text-steel">

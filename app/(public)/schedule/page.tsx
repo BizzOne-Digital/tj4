@@ -19,7 +19,6 @@ export default function SchedulePage() {
         title={copy.tournamentsHeading}
         description={copy.season2526Banner}
         image={drivePageHero("schedule")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-16 page-x">

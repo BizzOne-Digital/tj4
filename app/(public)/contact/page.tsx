@@ -19,7 +19,6 @@ export default function ContactPage() {
         title={copy.title}
         description={copy.intro}
         image={drivePageHero("contact")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto grid max-w-7xl gap-10 page-x lg:grid-cols-2 lg:gap-12">

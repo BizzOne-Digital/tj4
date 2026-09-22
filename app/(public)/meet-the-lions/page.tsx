@@ -22,7 +22,6 @@ export default function MeetTheLionsPage() {
         title="Meet the Lions"
         description="Browse Lions Basketball team pictures from every season."
         image={heroCover}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-7xl page-x">
@@ -41,7 +40,7 @@ export default function MeetTheLionsPage() {
                   <PersonPhoto
                     src={cover}
                     alt={season.title}
-                    frameClassName="aspect-[4/3] rounded-none ring-0"
+                    frameClassName="rounded-none ring-0"
                     sizes="(max-width:768px) 100vw, 33vw"
                   />
                   <div className="p-5 sm:p-6">

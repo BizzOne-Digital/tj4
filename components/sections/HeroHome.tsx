@@ -31,7 +31,7 @@ export function HeroHome({ settings }: { settings: ISiteSettings }) {
           unoptimized={heroUnoptimized}
           className={cn(
             isDriveAssetUrl(bg)
-              ? "object-contain object-center bg-midnight"
+              ? "object-cover object-center"
               : "object-cover object-[center_30%] sm:object-center"
           )}
           sizes="100vw"

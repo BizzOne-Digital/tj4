@@ -23,7 +23,6 @@ export default async function ProgramsPage() {
         title={programsPageCopy.title}
         description={programsIntro[0]}
         image={drivePageHero("programs")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl page-x">

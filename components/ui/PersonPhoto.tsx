@@ -1,11 +1,9 @@
 import { cn } from "@/lib/utils/cn";
-import { SafeImage } from "@/components/ui/SafeImage";
+import { resolveImageSrc } from "@/lib/images/resolve-image-src";
 
-/** Full photo visible — no cropped heads (letterbox on dark background). */
+/** Frame hugs the image — native img avoids Next.js fixed aspect-ratio wrappers. */
 export const personPhotoFrameClass =
-  "relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-charcoal/85 ring-1 ring-white/10";
-
-export const personPhotoImageClass = "object-contain object-center";
+  "overflow-hidden rounded-xl ring-1 ring-white/10 bg-transparent";
 
 export function PersonPhoto({
   src,
@@ -13,26 +11,33 @@ export function PersonPhoto({
   className,
   frameClassName,
   priority,
-  sizes = "(max-width:768px) 50vw, 25vw",
 }: {
   src: string;
   alt: string;
   className?: string;
   frameClassName?: string;
   priority?: boolean;
+  /** @deprecated layout is always natural width; kept for call-site compatibility */
   sizes?: string;
 }) {
+  const resolved = resolveImageSrc(src);
+
   return (
     <div className={cn(personPhotoFrameClass, frameClassName, className)}>
-      <SafeImage src={src} alt={alt} fill priority={priority} className={personPhotoImageClass} sizes={sizes} />
+      {/* Native img so container height matches each photo (no letterbox frame). */}
+      <img
+        src={resolved}
+        alt={alt}
+        className="block h-auto w-full align-bottom"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+      />
     </div>
   );
 }
 
 export const posterPhotoFrameClass =
-  "relative aspect-[2/3] w-full max-w-md overflow-hidden rounded-xl bg-charcoal/85 ring-1 ring-white/10";
-
-export const posterPhotoImageClass = "object-contain object-top";
+  "overflow-hidden rounded-xl ring-1 ring-white/10 w-full bg-transparent";
 
 export function PosterPhoto({
   src,
@@ -40,7 +45,6 @@ export function PosterPhoto({
   className,
   frameClassName,
   priority,
-  sizes = "(max-width:768px) 100vw, 280px",
 }: {
   src: string;
   alt: string;
@@ -49,9 +53,17 @@ export function PosterPhoto({
   priority?: boolean;
   sizes?: string;
 }) {
+  const resolved = resolveImageSrc(src);
+
   return (
     <div className={cn(posterPhotoFrameClass, frameClassName, className)}>
-      <SafeImage src={src} alt={alt} fill priority={priority} className={posterPhotoImageClass} sizes={sizes} />
+      <img
+        src={resolved}
+        alt={alt}
+        className="block h-auto w-full align-bottom"
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+      />
     </div>
   );
 }

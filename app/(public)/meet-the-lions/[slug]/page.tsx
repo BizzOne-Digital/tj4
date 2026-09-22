@@ -39,7 +39,6 @@ export default async function MeetTheLionsSeasonPage({ params }: Props) {
         title={meta?.title ?? album.title}
         description={meta?.description || undefined}
         image={heroImage}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-7xl page-x">

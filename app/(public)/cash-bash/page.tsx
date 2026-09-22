@@ -29,7 +29,6 @@ export default function CashBashPage() {
         title="Central PA Lions Basketball Cash Bash"
         description={`${e.date} · ${e.venue.name} · Osceola Mills, PA`}
         image={heroImage}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-10 page-x">

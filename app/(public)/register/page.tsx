@@ -23,16 +23,17 @@ export default async function RegisterPage() {
         title="Sign Up for Central PA Lions Basketball"
         description="Ready to be a Lion? Complete the signup form for your program level."
         image={drivePageHero("register")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-10 page-x">
           <div className="gradient-card p-6 clip-angle sm:p-8">
             <p className="text-xs uppercase tracking-[0.3em] text-electric">Central PA Lions Basketball Sign Ups</p>
-            <h2 className="mt-2 text-2xl uppercase">AAU / Travel Registration</h2>
+            <h2 className="mt-2 text-2xl uppercase">AAU/Travel Team Registration</h2>
             <p className="mt-3 text-sm text-steel">
-              AAU/Travel basketball registration for the Mountaineer program. Each Google Form opens in a new
-              tab—please fill it out completely so our coaching staff has your information.
+              AAU/Travel basketball registration for the Mountaineer program. The button below opens our official
+              Google Form in a new tab—fill it out completely so our coaching staff has your information. Responses
+              go to Google Forms (not this website); any confirmation email comes from Google only if that form is set
+              up to send one.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href={GOOGLE_SIGNUP_FORM_URL} fullWidth>
@@ -50,7 +51,12 @@ export default async function RegisterPage() {
             <p className="mt-2 text-sm text-steel">{settings.registrationNotice}</p>
           </div>
           <div>
-            <p className="mb-4 text-xs uppercase tracking-widest text-electric">Academy inquiry form</p>
+            <p className="mb-2 text-xs uppercase tracking-widest text-electric">Academy inquiry form</p>
+            <p className="mb-6 text-sm text-steel">
+              Use this form if you want the academy to follow up about programs or have questions before signing up.
+              Your answers are saved for our staff and we get an email notification—we do not send an automatic
+              confirmation to your inbox. Someone from the academy will reach out using the phone or email you provide.
+            </p>
             <RegistrationForm programs={programs} />
           </div>
           <p className="text-center text-sm text-steel">

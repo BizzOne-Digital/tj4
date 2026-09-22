@@ -98,6 +98,7 @@ console.log("Summary:", {
   gear: manifest.gear.length,
   cashBash: manifest.cashBash.length,
   alumni: manifest.alumni.length,
+  articles: manifest.articles.length,
   championships: Object.fromEntries(
     Object.entries(manifest.championships).map(([y, imgs]) => [y, imgs.length])
   ),

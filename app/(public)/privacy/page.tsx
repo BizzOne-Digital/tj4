@@ -11,7 +11,6 @@ export default function PrivacyPage() {
         title="Privacy Policy"
         description="How Central PA Lions Academy handles your information."
         image={drivePageHero("privacy")}
-        imageFit="contain"
       />
       <section className="prose prose-invert mx-auto max-w-3xl page-x section-y text-steel">
         <p>

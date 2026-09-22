@@ -19,7 +19,6 @@ export default function PricingPage() {
         title={copy.title}
         description={copy.subtitle}
         image={drivePageHero("pricing")}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-8 page-x text-steel">

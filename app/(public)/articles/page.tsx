@@ -23,7 +23,6 @@ export default function ArticlesPage() {
         title={copy.title}
         description={copy.intro}
         image={heroImage}
-        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-5xl space-y-10 page-x">
@@ -36,11 +35,11 @@ export default function ArticlesPage() {
                 <DriveImageGrid
                   images={driveManifest.articles}
                   altPrefix="Articles through the years"
-                  columns="grid-cols-2 md:grid-cols-3"
+                  columns="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                 />
               ) : (
                 <MediaPlaceholder
-                  label="Articles through the years — add JPG/PNG to Articles through the years/PICTURES in Drive folder"
+                  label="Articles through the years — add JPG/PNG (or iPhone HEIC) to Articles through the years in the Drive folder, then redeploy"
                   aspect="video"
                 />
               )}
