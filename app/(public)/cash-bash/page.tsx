@@ -1,53 +1,111 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { InnerHero } from "@/components/sections/InnerHero";
 import { DriveImageGrid } from "@/components/sections/DriveImageGrid";
 import { driveManifest } from "@/lib/images/drive-assets";
 import { siteImages } from "@/lib/data/site-images";
+import { cashBashEvent } from "@/lib/content/lions-copy";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Cash Bash",
+  title: "Cash Bash Event",
   description: "Central PA Lions Basketball Cash Bash — June 6, 2026 at Columbia Fire Hall.",
 };
 
+function SectionLabel({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-electric">{children}</p>
+  );
+}
+
 export default function CashBashPage() {
+  const e = cashBashEvent;
+  const heroImage = driveManifest.cashBash[0] || siteImages.achievements;
+
   return (
     <>
       <InnerHero
         eyebrow="Cash Bash Event"
         title="Central PA Lions Basketball Cash Bash"
-        description="Saturday, June 6, 2026 · Columbia Fire Hall · Osceola Mills, PA"
-        image={driveManifest.cashBash[0] || siteImages.achievements}
+        description={`${e.date} · ${e.venue.name} · Osceola Mills, PA`}
+        image={heroImage}
         imageFit="contain"
       />
       <section className="section-y">
-        <div className="mx-auto max-w-3xl space-y-8 page-x">
-          <DriveImageGrid images={driveManifest.cashBash} altPrefix="Cash Bash" columns="grid-cols-1" />
-          <div className="gradient-card p-6 text-sm leading-relaxed text-steel clip-angle sm:p-8">
-            <p className="text-lg font-semibold text-white">Saturday, June 6, 2026</p>
-            <p className="mt-2">Columbia Fire Hall</p>
-            <p>140 Curtain Street</p>
-            <p>Osceola Mills, PA 16666</p>
-            <p className="mt-4">Doors open at 5:45 pm · Event 6:00 pm to 11:00 pm</p>
-            <p className="mt-4">
-              Ticket admits 1 person and includes meal, adult beverages, entertainment, and the chance to win cash
-              prizes included in the price of the ticket. Must be 21 to attend. Must have ticket at door for admission.
-            </p>
-            <p className="mt-4 font-semibold text-white">
-              50/50&apos;s · Pull tab tickets · Big ticket items · Chinese auction · Lottery game and more!
-            </p>
-            <p className="mt-6 text-2xl font-[family-name:var(--font-display)] text-electric">$20 / ticket</p>
-            <p className="mt-2">Grand prize: Final cash winner $1,000 · Chance @ $100 every 15 minutes</p>
-            <p className="mt-4">
-              <strong className="text-white">Ticket includes:</strong> Meal · Adult drinks · Entertainment · Chance @
-              $100 every 15 minutes
-            </p>
-            <p className="mt-4">
-              <strong className="text-white">Sold separately:</strong> Basket raffle · Rip-off tickets · Door prizes ·
-              50/50 + more
-            </p>
-            <p className="mt-4">You must be present to win @ 9 PM</p>
+        <div className="mx-auto max-w-3xl space-y-10 page-x">
+          <div className="gradient-card space-y-8 p-6 text-sm leading-relaxed text-steel clip-angle sm:p-8">
+            <div className="text-center">
+              <p className="font-[family-name:var(--font-display)] text-xl uppercase tracking-wide text-white sm:text-2xl">
+                {e.headline[0]}
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-xl uppercase tracking-wide text-electric sm:text-2xl">
+                {e.headline[1]}
+              </p>
+              <p className="mt-6 text-base font-semibold text-white">{e.date}</p>
+              <p className="mt-3">{e.venue.name}</p>
+              <p>{e.venue.street}</p>
+              <p>{e.venue.cityStateZip}</p>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <SectionLabel>Ticket</SectionLabel>
+              <p className="mt-2">{e.schedule.doors}</p>
+              <p>{e.schedule.event}</p>
+              <p className="mt-4">{e.ticketNote}</p>
+              <p className="mt-3 font-semibold text-white">{e.ageRequirement}</p>
+              <p className="mt-1 font-semibold text-white">{e.admission}</p>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <p className="text-center text-xs font-semibold uppercase tracking-wider text-white">{e.extras}</p>
+            </div>
+
+            <div className="border-t border-white/10 pt-6 text-center">
+              <SectionLabel>Ticket</SectionLabel>
+              <p className="mt-3 text-3xl font-[family-name:var(--font-display)] text-electric">{e.price}</p>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <SectionLabel>{e.grandPrize.title}</SectionLabel>
+              {e.grandPrize.lines.map((line) => (
+                <p key={line} className="mt-2 text-base text-white">
+                  {line}
+                </p>
+              ))}
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <SectionLabel>Ticket includes</SectionLabel>
+              <ul className="mt-3 list-inside list-disc space-y-1">
+                {e.ticketIncludes.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <SectionLabel>Sold separately</SectionLabel>
+              <ul className="mt-3 list-inside list-disc space-y-1">
+                {e.soldSeparately.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <p className="border-t border-white/10 pt-6 text-center font-semibold text-white">{e.presenceRule}</p>
           </div>
+
+          {driveManifest.cashBash.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="text-center text-2xl uppercase">Pictures</h2>
+              <DriveImageGrid
+                images={driveManifest.cashBash}
+                altPrefix="Cash Bash"
+                columns="grid-cols-1 sm:grid-cols-2"
+              />
+            </div>
+          )}
+
           <Button href="/fundraising" variant="secondary" fullWidth>
             More Fundraising Info
           </Button>

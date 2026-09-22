@@ -35,9 +35,9 @@ export default async function MeetTheLionsSeasonPage({ params }: Props) {
   return (
     <>
       <InnerHero
-        eyebrow="Meet the Lions"
-        title={album.title}
-        description={meta?.description ?? album.description}
+        eyebrow={meta?.label ?? "Meet the Lions"}
+        title={meta?.title ?? album.title}
+        description={meta?.description || undefined}
         image={heroImage}
         imageFit="contain"
       />

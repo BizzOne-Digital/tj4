@@ -91,4 +91,17 @@ const manifest = {
 const outPath = path.join(process.cwd(), "lib", "data", "drive-manifest.json");
 fs.writeFileSync(outPath, JSON.stringify(manifest, null, 2));
 console.log("Wrote", outPath);
-console.log("Meet the Lions seasons:", Object.keys(meetTheLions).map((k) => `${k}: ${meetTheLions[k].images.length} imgs`));
+console.log("Summary:", {
+  welcomeHero: Boolean(manifest.welcomeHero),
+  mainPageImages: mainImages.length,
+  coaches: Object.values(manifest.coaches).filter(Boolean).length,
+  gear: manifest.gear.length,
+  cashBash: manifest.cashBash.length,
+  alumni: manifest.alumni.length,
+  championships: Object.fromEntries(
+    Object.entries(manifest.championships).map(([y, imgs]) => [y, imgs.length])
+  ),
+  meetTheLions: Object.fromEntries(
+    Object.entries(meetTheLions).map(([k, v]) => [k, v.images.length])
+  ),
+});

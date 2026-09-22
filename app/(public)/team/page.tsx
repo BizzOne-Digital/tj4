@@ -3,6 +3,7 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { PosterPhoto } from "@/components/ui/PersonPhoto";
 import { MediaPlaceholder } from "@/components/sections/MediaPlaceholder";
 import { getCoaches } from "@/lib/data/queries";
+import { driveManifest } from "@/lib/images/drive-assets";
 import { siteImages } from "@/lib/data/site-images";
 
 export const metadata: Metadata = {
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 
 export default async function TeamPage() {
   const coaches = await getCoaches();
+  const coachHero =
+    (Object.values(driveManifest.coaches).find(Boolean) as string | undefined) || siteImages.lockerRoom;
 
   return (
     <>
@@ -19,7 +22,8 @@ export default async function TeamPage() {
         eyebrow="Meet the Coaches"
         title="One Team. One Family. One Purpose."
         description="USAB Gold Certified coaches invested in player development and character."
-        image={siteImages.lockerRoom}
+        image={coachHero}
+        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-4xl space-y-16 page-x">

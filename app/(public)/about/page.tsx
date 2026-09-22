@@ -3,6 +3,7 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { ProseBlock } from "@/components/sections/ProseBlock";
 import { getSiteSettings } from "@/lib/data/queries";
 import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
 import {
   aboutAcademyIntro,
   seasonMission,
@@ -43,7 +44,7 @@ export default async function AboutPage() {
         eyebrow="About the Academy"
         title="TJ Anderson's Central PA Lions Academy"
         description="Youth basketball for grades K–12 — developing athletes on and off the court across Central Pennsylvania."
-        image={siteImages.courtCenter}
+        image={drivePageHero("about")}
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl page-x">

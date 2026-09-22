@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InnerHero } from "@/components/sections/InnerHero";
-import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
 
 export const metadata: Metadata = { title: "Privacy Policy" };
 
@@ -10,7 +10,8 @@ export default function PrivacyPage() {
       <InnerHero
         title="Privacy Policy"
         description="How Central PA Lions Academy handles your information."
-        image={siteImages.courtCenter}
+        image={drivePageHero("privacy")}
+        imageFit="contain"
       />
       <section className="prose prose-invert mx-auto max-w-3xl page-x section-y text-steel">
         <p>

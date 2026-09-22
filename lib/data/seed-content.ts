@@ -10,6 +10,8 @@ import type {
 } from "@/models/schemas";
 import { programImageByIndex, siteImages } from "@/lib/data/site-images";
 import { defaultCoaches } from "@/lib/data/seed-coaches";
+import { driveManifest } from "@/lib/images/drive-assets";
+import { meetTheLionsSeasons } from "@/lib/content/lions-copy";
 
 export { defaultCoaches };
 
@@ -204,57 +206,17 @@ export const defaultPricing: IPricingPlan[] = [
 ];
 
 
-export const defaultGalleryAlbums: IGalleryAlbum[] = [
-  {
-    title: "2020-2021 Season",
-    slug: "2020-21",
-    description:
-      "Coach Anderson's first season leading the Lions. Meet the roster and revisit the team photos that started this era of Lions basketball.",
-    order: 0,
+export const defaultGalleryAlbums: IGalleryAlbum[] = meetTheLionsSeasons.map((season, order) => {
+  const album = driveManifest.meetTheLions[season.slug as keyof typeof driveManifest.meetTheLions];
+  return {
+    title: season.title,
+    slug: season.slug,
+    description: season.description || `Lions team photos from the ${season.label} season.`,
+    order,
     published: true,
-    coverImage: siteImages.benchGear,
-  },
-  {
-    title: "2021-2022 Season",
-    slug: "2021-22",
-    description: "Lions team photos from the 2021–2022 season.",
-    order: 1,
-    published: true,
-    coverImage: siteImages.trainingCourt,
-  },
-  {
-    title: "2022-2023 Season",
-    slug: "2022-23",
-    description: "Lions team photos from the 2022–2023 season.",
-    order: 2,
-    published: true,
-    coverImage: siteImages.courtCenter,
-  },
-  {
-    title: "2023-2024 Season",
-    slug: "2023-24",
-    description: "Lions team photos from the 2023–2024 season.",
-    order: 3,
-    published: true,
-    coverImage: siteImages.lockerRoom,
-  },
-  {
-    title: "2024-2025 Season",
-    slug: "2024-25",
-    description: "Lions team photos from the 2024–2025 season.",
-    order: 4,
-    published: true,
-    coverImage: siteImages.achievements,
-  },
-  {
-    title: "2025-2026 Season",
-    slug: "2025-26",
-    description: "Lions team photos from the 2025–2026 season.",
-    order: 5,
-    published: true,
-    coverImage: siteImages.shootingMachine,
-  },
-];
+    coverImage: album?.cover || siteImages.trainingCourt,
+  };
+});
 
 export const defaultTestimonials: ITestimonial[] = [
   {

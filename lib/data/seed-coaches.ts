@@ -1,7 +1,13 @@
 import type { ICoach } from "@/models/schemas";
 import { siteImages } from "@/lib/data/site-images";
+import { driveManifest } from "@/lib/images/drive-assets";
 
-/** Poster images: upload to admin team profiles (folder: pages) when Drive assets arrive. */
+const posters = driveManifest.coaches as Record<string, string | undefined>;
+
+function coachPhoto(name: string, fallback = siteImages.benchGear): string {
+  return posters[name] ?? fallback;
+}
+
 export const defaultCoaches: ICoach[] = [
   {
     name: "TJ Anderson",
@@ -20,8 +26,8 @@ One Team. One Family. One Purpose.`,
     featured: true,
     order: 0,
     published: true,
-    photo: siteImages.benchGear,
-    photoAlt: "Coach TJ Anderson — poster coming from Drive",
+    photo: coachPhoto("TJ Anderson"),
+    photoAlt: "Coach TJ Anderson",
   },
   {
     name: "Shane Kelly",
@@ -42,8 +48,8 @@ Play • Develop • Compete • Belong — More Than a Game`,
     featured: true,
     order: 1,
     published: true,
-    photo: siteImages.trainingCourt,
-    photoAlt: "Coach Shane Kelly — poster coming from Drive",
+    photo: coachPhoto("Shane Kelly"),
+    photoAlt: "Coach Shane Kelly",
   },
   {
     name: "Bryan Kulick",
@@ -66,8 +72,8 @@ Thank you, Coach Kulick, for your dedication to our athletes and the entire Cent
     featured: true,
     order: 2,
     published: true,
-    photo: siteImages.lockerRoom,
-    photoAlt: "Coach Bryan Kulick — poster coming from Drive",
+    photo: coachPhoto("Bryan Kulick"),
+    photoAlt: "Coach Bryan Kulick",
   },
   {
     name: "Brandon Myers",
@@ -86,8 +92,8 @@ Thank you, Coach Myers, for your dedication to our players and the entire Centra
     featured: true,
     order: 3,
     published: true,
-    photo: siteImages.courtCenter,
-    photoAlt: "Coach Brandon Myers — poster coming from Drive",
+    photo: coachPhoto("Brandon Myers"),
+    photoAlt: "Coach Brandon Myers",
   },
   {
     name: "Tim Mills",
@@ -106,7 +112,7 @@ We are truly blessed to have Coach Mills and his family within our program. Than
     featured: true,
     order: 4,
     published: true,
-    photo: siteImages.arenaTunnel,
-    photoAlt: "Coach Tim Mills — poster coming from Drive",
+    photo: coachPhoto("Tim Mills"),
+    photoAlt: "Coach Tim Mills",
   },
 ];

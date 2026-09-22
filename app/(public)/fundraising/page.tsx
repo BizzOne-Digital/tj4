@@ -5,7 +5,8 @@ import { DriveImageGrid } from "@/components/sections/DriveImageGrid";
 import { MediaPlaceholder } from "@/components/sections/MediaPlaceholder";
 import { Button } from "@/components/ui/Button";
 import { driveManifest } from "@/lib/images/drive-assets";
-import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
+import { fundraisingPageCopy } from "@/lib/content/lions-copy";
 
 export const metadata: Metadata = {
   title: "Fundraising",
@@ -13,50 +14,74 @@ export const metadata: Metadata = {
 };
 
 export default function FundraisingPage() {
+  const copy = fundraisingPageCopy;
+
   return (
     <>
       <InnerHero
         eyebrow="Fundraising"
-        title="Support the Lion Basketball Program"
-        description="Fundraising efforts support uniforms, equipment, training programs, and tournament travel."
-        image={driveManifest.cashBash[0] || siteImages.achievements}
+        title={copy.title}
+        description={copy.whyBody}
+        image={drivePageHero("fundraising")}
         imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-12 page-x">
           <div>
-            <h2 className="text-2xl uppercase">Cash Bash</h2>
+            <h2 className="text-2xl uppercase">{copy.cashBashHeading}</h2>
             <p className="mt-2 text-sm text-steel">
-              Join us for our annual fundraiser — details on the{" "}
-              <Link href="/cash-bash" className="text-electric">
+              Event details on the{" "}
+              <Link href="/cash-bash" className="text-electric hover:underline">
                 Cash Bash event page
               </Link>
               .
             </p>
-            <div className="mt-6">
-              <DriveImageGrid images={driveManifest.cashBash} altPrefix="Cash Bash" columns="grid-cols-1" />
-            </div>
-          </div>
-          <div>
-            <h2 className="text-2xl uppercase">Pick 3 Lottery</h2>
-            <p className="mt-2 text-sm text-steel">
-              Support the program through our Pick 3 fundraiser. Contact the coaching staff for more details.
-            </p>
-            {driveManifest.pick3.length > 0 ? (
-              <DriveImageGrid images={driveManifest.pick3} altPrefix="Pick 3 Lottery" columns="grid-cols-1" />
+            {driveManifest.cashBash.length > 0 ? (
+              <div className="mt-6">
+                <DriveImageGrid
+                  images={driveManifest.cashBash}
+                  altPrefix="Cash Bash"
+                  columns="grid-cols-1 sm:grid-cols-2"
+                />
+              </div>
             ) : (
-              <MediaPlaceholder className="mt-6" label="Pick 3 Lottery (HEIC in Drive — add JPG export to display)" aspect="video" />
+              <MediaPlaceholder className="mt-6" label="Cash Bash pictures" aspect="video" />
             )}
-            <Button href="/contact" variant="secondary" className="mt-6" fullWidth>
-              Contact for Details
+          </div>
+
+          <div className="space-y-6">
+            <p className="text-sm leading-relaxed text-steel">{copy.pick3Intro}</p>
+            <Button href="/contact" variant="secondary" fullWidth>
+              {copy.contactCta}
             </Button>
           </div>
-          <div className="gradient-card p-6 clip-angle">
-            <h2 className="text-xl uppercase">Why We Fundraise</h2>
-            <p className="mt-3 text-sm leading-relaxed text-steel">
-              Fundraising efforts support uniforms, equipment, training programs, and tournament travel for our
-              student-athletes. Every contribution helps maintain the Mountaineer tradition of excellence.
-            </p>
+
+          <div>
+            <h2 className="text-2xl uppercase">{copy.pick3Heading}</h2>
+            {driveManifest.pick3.length > 0 ? (
+              <div className="mt-6">
+                <DriveImageGrid
+                  images={driveManifest.pick3}
+                  altPrefix="Pick 3 Lottery"
+                  columns="grid-cols-1 sm:grid-cols-2"
+                />
+              </div>
+            ) : (
+              <MediaPlaceholder
+                className="mt-6"
+                label="Pick 3 Lottery — add JPG/PNG to PICK 3 LOTTERY/PICTURES in Drive folder"
+                aspect="video"
+              />
+            )}
+            <p className="mt-6 text-sm leading-relaxed text-steel">{copy.pick3Details}</p>
+            <Button href="/contact" variant="secondary" className="mt-6" fullWidth>
+              {copy.contactCta}
+            </Button>
+          </div>
+
+          <div className="gradient-card p-6 clip-angle sm:p-8">
+            <h2 className="text-xl uppercase">{copy.whyHeading}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-steel">{copy.whyBody}</p>
           </div>
         </div>
       </section>

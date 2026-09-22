@@ -4,6 +4,7 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { RegistrationForm } from "@/components/forms/RegistrationForm";
 import { getPrograms, getSiteSettings } from "@/lib/data/queries";
 import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
 import { GOOGLE_SIGNUP_FORM_URL } from "@/lib/content/lions-copy";
 import { Button } from "@/components/ui/Button";
 
@@ -21,7 +22,8 @@ export default async function RegisterPage() {
         eyebrow="Join Our Team"
         title="Sign Up for Central PA Lions Basketball"
         description="Ready to be a Lion? Complete the signup form for your program level."
-        image={siteImages.shootingMachine}
+        image={drivePageHero("register")}
+        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-10 page-x">

@@ -18,14 +18,31 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-export function ContactForm() {
+export function ContactForm({
+  showInquiryType = true,
+  submitLabel = "Send Message",
+  placeholders,
+}: {
+  showInquiryType?: boolean;
+  submitLabel?: string;
+  placeholders?: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    subject?: string;
+    message?: string;
+  };
+}) {
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: showInquiryType ? undefined : { inquiryType: "general" },
+  });
 
   const onSubmit = handleSubmit(async (values) => {
     const result = await submitContact(values);
@@ -50,35 +67,38 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Name" error={errors.name?.message}>
-          <input {...register("name")} className="field" />
+          <input {...register("name")} className="field" placeholder={placeholders?.name} />
         </Field>
         <Field label="Email" error={errors.email?.message}>
-          <input type="email" {...register("email")} className="field" />
+          <input type="email" {...register("email")} className="field" placeholder={placeholders?.email} />
         </Field>
       </div>
       <Field label="Phone" error={errors.phone?.message}>
-        <input {...register("phone")} className="field" />
+        <input {...register("phone")} className="field" placeholder={placeholders?.phone} />
       </Field>
-      <div className="grid gap-4 md:grid-cols-2">
+      {!showInquiryType && <input type="hidden" {...register("inquiryType")} />}
+      <div className={showInquiryType ? "grid gap-4 md:grid-cols-2" : ""}>
         <Field label="Subject" error={errors.subject?.message}>
-          <input {...register("subject")} className="field" />
+          <input {...register("subject")} className="field" placeholder={placeholders?.subject} />
         </Field>
-        <Field label="Inquiry Type" error={errors.inquiryType?.message}>
-          <select {...register("inquiryType")} className="field">
-            <option value="">Select</option>
-            <option value="registration">Registration</option>
-            <option value="programs">Programs</option>
-            <option value="donations">Donations</option>
-            <option value="general">General</option>
-          </select>
-        </Field>
+        {showInquiryType ? (
+          <Field label="Inquiry Type" error={errors.inquiryType?.message}>
+            <select {...register("inquiryType")} className="field">
+              <option value="">Select</option>
+              <option value="registration">Registration</option>
+              <option value="programs">Programs</option>
+              <option value="donations">Donations</option>
+              <option value="general">General</option>
+            </select>
+          </Field>
+        ) : null}
       </div>
       <Field label="Message" error={errors.message?.message}>
-        <textarea rows={5} {...register("message")} className="field" />
+        <textarea rows={5} {...register("message")} className="field" placeholder={placeholders?.message} />
       </Field>
       {status === "error" && <p className="text-sm text-red-400">Something went wrong. Please try again.</p>}
       <Button type="submit" disabled={isSubmitting} fullWidth className="sm:w-auto">
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting ? "Sending..." : submitLabel}
       </Button>
     </form>
   );

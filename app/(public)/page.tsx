@@ -18,11 +18,11 @@ import {
   getSponsors,
 } from "@/lib/data/queries";
 import Link from "next/link";
-import Image from "next/image";
 import { PosterPhoto } from "@/components/ui/PersonPhoto";
 import { NewsletterSignup } from "@/components/forms/NewsletterSignup";
-import { siteImages } from "@/lib/data/site-images";
+import { driveMainImage } from "@/lib/images/drive-page-heroes";
 import { SectionBackdrop } from "@/components/sections/SectionImagery";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -51,7 +51,7 @@ export default async function HomePage() {
       <MissionBlock settings={settings} />
       <HomeWelcomeMedia />
 
-      <SectionBackdrop src={siteImages.trainingCourt} alt="Lions training on court" className="border-y border-white/10 section-y">
+      <SectionBackdrop src={driveMainImage(0)} alt="Lions training on court" className="border-y border-white/10 section-y">
         <div className="relative mx-auto max-w-7xl page-x">
           <p className="text-[10px] uppercase tracking-[0.25em] text-electric sm:text-xs sm:tracking-[0.3em]">Why Choose the Lions</p>
           <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl">Development With Purpose</h2>
@@ -102,14 +102,14 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="relative min-h-[240px] overflow-hidden clip-angle ring-1 ring-electric/30 sm:min-h-[320px]">
-              <Image src={siteImages.shootingMachine} alt="Lions skill development" fill className="object-cover" />
+              <SafeImage src={driveMainImage(4)} alt="Lions skill development" fill className="object-contain object-center bg-midnight" />
               <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-electric/10" />
             </div>
           </div>
         </div>
       </section>
 
-      <SectionBackdrop src={siteImages.lockerRoom} alt="Lions team locker room" className="section-y court-lines">
+      <SectionBackdrop src={driveMainImage(1)} alt="Lions team" className="section-y court-lines">
         <div className="relative mx-auto max-w-7xl page-x">
           <p className="text-[10px] uppercase tracking-[0.25em] text-electric sm:text-xs sm:tracking-[0.3em]">Coaching Staff</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">Meet the Pride</h2>
@@ -140,7 +140,7 @@ export default async function HomePage() {
         </div>
       </SectionBackdrop>
 
-      <SectionBackdrop src={siteImages.benchGear} alt="Lions game day preparation" className="section-y">
+      <SectionBackdrop src={driveMainImage(2)} alt="Lions game day" className="section-y">
         <div className="relative mx-auto max-w-7xl page-x">
           <p className="text-[10px] uppercase tracking-[0.25em] text-electric sm:text-xs sm:tracking-[0.3em]">Testimonials</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">Lions Families Speak</h2>
@@ -157,7 +157,7 @@ export default async function HomePage() {
         </div>
       </SectionBackdrop>
 
-      <SectionBackdrop src={siteImages.achievements} alt="Lions achievements" className="border-y border-electric/15 section-y">
+      <SectionBackdrop src={driveMainImage(3)} alt="Lions achievements" className="border-y border-electric/15 section-y">
         <div className="relative mx-auto max-w-7xl page-x">
           <p className="text-[10px] uppercase tracking-[0.25em] text-electric sm:text-xs sm:tracking-[0.3em]">Registration Fees</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">Invest In Development</h2>
@@ -184,7 +184,7 @@ export default async function HomePage() {
         </div>
       </SectionBackdrop>
 
-      <SectionBackdrop src={siteImages.arenaTunnel} alt="Walk onto the court with the Lions" className="section-y">
+      <SectionBackdrop src={driveMainImage(5)} alt="Walk onto the court with the Lions" className="section-y">
         <div className="relative mx-auto max-w-7xl page-x">
           <p className="text-[10px] uppercase tracking-[0.25em] text-electric sm:text-xs sm:tracking-[0.3em]">News</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">Latest Updates</h2>
@@ -238,7 +238,7 @@ export default async function HomePage() {
       />
 
       <section className="section-clip relative overflow-hidden py-16 sm:py-24">
-        <Image src={siteImages.achievements} alt="" fill className="object-cover" sizes="100vw" />
+        <SafeImage src={driveMainImage(6)} alt="" fill className="object-contain object-center bg-midnight" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-r from-midnight/90 via-midnight/75 to-electric/25" />
         <div className="mesh-orb left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 bg-electric/20 sm:h-[500px] sm:w-[500px]" />
         <div className="relative mx-auto max-w-4xl page-x text-center">

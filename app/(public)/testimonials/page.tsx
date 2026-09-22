@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { InnerHero } from "@/components/sections/InnerHero";
 import { getTestimonials } from "@/lib/data/queries";
-import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
 import { TestimonialSubmitForm } from "@/components/forms/TestimonialSubmitForm";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default async function TestimonialsPage() {
 
   return (
     <>
-      <InnerHero eyebrow="Testimonials" title="Voices of the Pride" image={siteImages.benchGear} />
+      <InnerHero eyebrow="Testimonials" title="Voices of the Pride" image={drivePageHero("testimonials")} imageFit="contain" />
       <section className="section-y">
         <div className="mx-auto max-w-7xl page-x">
           <div className="grid gap-6 md:grid-cols-2">

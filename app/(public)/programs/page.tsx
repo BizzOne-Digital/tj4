@@ -5,7 +5,8 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { ProseBlock } from "@/components/sections/ProseBlock";
 import { getPrograms } from "@/lib/data/queries";
 import { siteImages, programImageByIndex } from "@/lib/data/site-images";
-import { programsIntro, travelTeamsCopy } from "@/lib/content/lions-copy";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
+import { programsIntro, travelTeamsCopy, programsPageCopy } from "@/lib/content/lions-copy";
 
 export const metadata: Metadata = {
   title: "Programs",
@@ -18,16 +19,17 @@ export default async function ProgramsPage() {
   return (
     <>
       <InnerHero
-        eyebrow="Programs"
-        title="Development Led by USAB Gold Certified Coaches"
-        description="From novice to advanced — learn the game and take skills to the next level on and off the court."
-        image={siteImages.trainingCourt}
+        eyebrow={programsPageCopy.eyebrow}
+        title={programsPageCopy.title}
+        description={programsIntro[0]}
+        image={drivePageHero("programs")}
+        imageFit="contain"
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl page-x">
           <ProseBlock paragraphs={programsIntro} />
           <div className="mt-10 gradient-card p-6 clip-angle">
-            <h2 className="text-2xl uppercase">Travel Teams</h2>
+            <h2 className="text-2xl uppercase">{programsPageCopy.travelTeamsHeading}</h2>
             <p className="mt-4 text-sm leading-relaxed text-steel">{travelTeamsCopy}</p>
           </div>
         </div>

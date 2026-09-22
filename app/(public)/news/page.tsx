@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { InnerHero } from "@/components/sections/InnerHero";
 import { getBlogPosts } from "@/lib/data/queries";
-import { siteImages } from "@/lib/data/site-images";
+import { drivePageHero } from "@/lib/images/drive-page-heroes";
 import { formatDate } from "@/lib/utils/cn";
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default async function NewsPage() {
 
   return (
     <>
-      <InnerHero eyebrow="News & Updates" title="Lions Headlines" image={siteImages.arenaTunnel} />
+      <InnerHero eyebrow="News & Updates" title="Lions Headlines" image={drivePageHero("news")} imageFit="contain" />
       <section className="section-y">
         <div className="mx-auto max-w-7xl page-x">
           {featured && (
