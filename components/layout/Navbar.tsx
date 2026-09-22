@@ -7,6 +7,7 @@ import { Menu, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import type { ISiteSettings } from "@/models/schemas";
+import { navigationForDesktopBar } from "@/lib/navigation/public-nav";
 
 export function Navbar({
   settings,
@@ -26,12 +27,12 @@ export function Navbar({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const nav = settings.navigation?.length
-    ? settings.navigation
-    : [
-        { label: "About", href: "/about" },
-        { label: "Join", href: "/register" },
-      ];
+  const nav = navigationForDesktopBar(settings.navigation?.length ? settings.navigation : undefined);
+  const navFallback = navigationForDesktopBar([
+    { label: "About", href: "/about" },
+    { label: "Join", href: "/register" },
+  ]);
+  const items = nav.length ? nav : navFallback;
 
   return (
     <>
@@ -58,18 +59,19 @@ export function Navbar({
               className="h-8 w-8 shrink-0 object-contain sm:h-10 sm:w-10"
               priority
             />
-            <div className="hidden min-w-0 leading-tight sm:block">
+            <div className="hidden min-w-0 leading-tight xl:block">
               <p className="truncate font-[family-name:var(--font-display)] text-xs tracking-wide text-white lg:text-sm">
                 CENTRAL PA LIONS
               </p>
               <p className="truncate text-[8px] uppercase tracking-[0.2em] text-steel lg:text-[9px]">
-                {settings.motto || "Youth Basketball Academy"}
+                {settings.tagline || settings.motto || "Youth Basketball Academy"}
               </p>
             </div>
           </Link>
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-3 lg:flex xl:gap-5">
-            {nav.map((item) =>
+          <div className="hidden min-w-0 flex-1 items-center justify-end gap-2 lg:flex xl:gap-3">
+            <nav className="flex max-w-[min(100%,52rem)] flex-wrap items-center justify-end gap-x-2 gap-y-1 xl:gap-x-3">
+            {items.map((item) =>
               item.children?.length ? (
                 <div
                   key={item.label}
@@ -112,18 +114,17 @@ export function Navbar({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/85 transition-colors hover:text-white xl:text-[11px] xl:tracking-[0.2em]"
+                  className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors hover:text-white lg:text-[10px] xl:tracking-[0.18em]"
                 >
                   {item.label}
                 </Link>
               )
             )}
-          </nav>
+            </nav>
 
-          <div className="hidden shrink-0 lg:block">
             <Link
               href="/donate"
-              className="inline-flex min-h-[36px] items-center justify-center rounded-full bg-sky-300 px-5 text-[11px] font-bold uppercase tracking-[0.2em] text-midnight transition hover:bg-sky-200"
+              className="inline-flex min-h-[36px] shrink-0 items-center justify-center rounded-full bg-sky-300 px-4 text-[10px] font-bold uppercase tracking-[0.15em] text-midnight transition hover:bg-sky-200 xl:px-5 xl:text-[11px] xl:tracking-[0.2em]"
             >
               Donate
             </Link>

@@ -9,34 +9,13 @@ import { X, Facebook, Instagram, Twitter, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
 import type { ISiteSettings } from "@/models/schemas";
+import { navigationForMobilePrimary } from "@/lib/navigation/public-nav";
 
 function useMobileNavStructure(settings: ISiteSettings) {
-  return useMemo(() => {
-    const nav = settings.navigation?.length
-      ? settings.navigation
-      : [
-          { label: "Home", href: "/" },
-          { label: "About", href: "/about" },
-        ];
-
-    const primary: { label: string; href: string }[] = [];
-    const moreSections: { title: string; links: { label: string; href: string }[] }[] = [];
-
-    for (const item of nav) {
-      if (item.children?.length) {
-        moreSections.push({
-          title: item.label,
-          links: item.children.map((c) => ({ label: c.label, href: c.href })),
-        });
-        continue;
-      }
-      if (item.href && item.href !== "#") {
-        primary.push({ label: item.label, href: item.href });
-      }
-    }
-
-    return { primary, moreSections };
-  }, [settings.navigation]);
+  return useMemo(
+    () => navigationForMobilePrimary(settings.navigation),
+    [settings.navigation]
+  );
 }
 
 function NavLink({
