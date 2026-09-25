@@ -15,6 +15,9 @@ npm-debug.log*
 **/*.MOV
 **/*.mp4
 **/*.MP4
+# Homepage highlight reels (required on Vercel — paths in lib/data/site-videos.ts)
+!public/videos/
+!public/videos/*.mp4
 **/*.webm
 **/*.WEBM
 **/*.heic
