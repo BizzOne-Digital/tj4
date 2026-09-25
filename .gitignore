@@ -1,0 +1,21 @@
+/node_modules
+/.next/
+/out/
+.env
+.env*.local
+*.pem
+npm-debug.log*
+.DS_Store
+.vercel
+
+# Large media — keep locally only (not for GitHub)
+**/*.zip
+**/*.ZIP
+**/*.mov
+**/*.MOV
+**/*.mp4
+**/*.MP4
+**/*.webm
+**/*.WEBM
+**/*.heic
+**/*.HEIC

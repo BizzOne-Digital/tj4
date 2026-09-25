@@ -1,0 +1,49 @@
+{
+  "name": "central-pa-lions-academy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "npm run generate:drive-manifest && next build",
+    "build:prod": "npm run lint && npm run build",
+    "start": "next start",
+    "lint": "eslint",
+    "seed": "tsx scripts/seed.ts",
+    "seed:testimonials-faqs": "tsx scripts/seed-testimonials-faqs.ts",
+    "seed:client-content": "tsx scripts/seed-client-content.ts",
+    "generate:drive-manifest": "tsx scripts/convert-articles-heic.ts && tsx scripts/generate-drive-manifest.ts",
+    "create-admin": "tsx scripts/create-admin.ts",
+    "test:smtp": "tsx scripts/test-smtp.ts"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.544.0",
+    "mongoose": "^8.18.1",
+    "next": "^15.5.3",
+    "next-auth": "^4.24.11",
+    "nodemailer": "^7.0.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "recharts": "^3.2.0",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^24.3.1",
+    "@types/nodemailer": "^7.0.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "^15.5.3",
+    "heic-convert": "^2.1.0",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
