@@ -1,7 +1,16 @@
 /** Client-provided site copy (images added via admin / seed when available). */
 
 export const GOOGLE_SIGNUP_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeghyLEvFp854EF1xXqA6ZIbsUNTkAsTew4crfx9ncz4zZ2kw/viewform?pli=1";
+  "https://docs.google.com/forms/d/e/1FAIpQLSeghyLEvFp854EF1xXqA6ZIbsUNTkAsTew4crfx9ncz4zZ2kw/viewform";
+
+export const registrationPromoCopy = {
+  headline: "2026–27 Registration Is Open",
+  tagline: "Come join our family.",
+  salePricing:
+    "Sale price: $400 for a single registration, $700 for two players in the same household.",
+  priceGuarantee:
+    "We guarantee we will beat any program price with proof—as a thank you to our customers.",
+};
 
 export const SQUARE_SITE_URL = "https://centralpalions.square.site/";
 
@@ -156,11 +165,17 @@ export const tryoutsPageCopy = {
     "all student-athletes will need to submit a copy of their birth certificate with their registration. For returning student-athletes, please email us at contact@centralpalions.com to confirm that we have your birth certificate on file.",
   hardCopyIntro:
     "For those submitting a hard copy registration, please send your completed registration packet to the address listed below:",
-  hardCopyAddress: `Central PA Lions/2024 Tournament Season
+  hardCopyAddress: `Central PA Lions/2026–27 Tournament Season
 7410 Sportsman Road
 Alexandria, PA 16611`,
   feesHeading: "The non-refundable fees are as follows:",
-  fees: ["$400 (individual)", "$700 (2 person family)", "$1,050 (3 person family)"],
+  fees: [
+    "$400 (single registration — sale price)",
+    "$700 (two players in the same household — sale price)",
+    "$1,050 (3 person family)",
+  ],
+  saleNote: registrationPromoCopy.salePricing,
+  priceGuarantee: registrationPromoCopy.priceGuarantee,
   feesParagraphBeforeSquare:
     "The registration fee is non-refundable and is due upon enrollment in the program and no later than February 28th, 2027. As a team, we will be conducting fundraisers for our program. The fundraiser opt-out fee is a $200 non-refundable fee for student-athletes to participate in the program. You can submit payment securely online by visiting ",
   feesParagraphAfterSquare:
@@ -183,17 +198,17 @@ export const tryoutSessions = [
       "11:00am-12:00pm, Grades 7-12 (Girls)",
       "12:00pm-1:00pm, Grades 3-6 (Girls)",
     ],
-    registrationDue: "Registration Packet due by Saturday, October 4th, 2026 for this tryout",
+    registrationDue: "Registration Packet due by Saturday, October 3rd, 2026 for this tryout",
   },
   {
-    date: "Sunday, February 14th, 2027",
+    date: "Saturday, February 13th, 2027",
     slots: [
       "8:00am-9:00am, Grades 3-6 (Boys)",
       "9:00am-10:30am, Grades 7-12 (Boys)",
       "11:00am-12:00pm, Grades 7-12 (Girls)",
       "12:00pm-1:00pm, Grades 3-6 (Girls)",
     ],
-    registrationDue: "Registration Packet due by Sunday, February 7th, 2027",
+    registrationDue: "Registration Packet due by Saturday, February 6th, 2027 for this tryout",
   },
 ];
 
@@ -266,7 +281,13 @@ export const pricingPageCopy = {
   title: "Program Pricing to Join Our Family",
   subtitle: "Program pricing to join our family",
   feesHeading: "The non-refundable fees are as follows:",
-  fees: ["$400 (individual)", "$700 (2 person family)", "$1,050 (3 person family)"],
+  fees: [
+    "$400 (single registration — sale price)",
+    "$700 (two players in the same household — sale price)",
+    "$1,050 (3 person family)",
+  ],
+  saleNote: registrationPromoCopy.salePricing,
+  priceGuarantee: registrationPromoCopy.priceGuarantee,
   paymentParagraphBeforeSquare:
     "The registration fee is non-refundable and is due upon enrollment in the program and no later than February 28th, 2027. As a team, we will be conducting fundraisers for our program. The fundraiser opt-out fee is a $200 non-refundable fee for student-athletes to participate in the program. You can submit payment securely online by visiting ",
   paymentParagraphAfterSquare:

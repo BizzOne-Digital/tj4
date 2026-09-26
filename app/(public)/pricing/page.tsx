@@ -34,6 +34,10 @@ export default function PricingPage() {
                 <li key={fee}>• {fee}</li>
               ))}
             </ul>
+            {copy.saleNote ? <p className="mt-4 text-sm text-white">{copy.saleNote}</p> : null}
+            {copy.priceGuarantee ? (
+              <p className="mt-2 text-sm text-steel">{copy.priceGuarantee}</p>
+            ) : null}
           </div>
 
           <pre className="whitespace-pre-wrap rounded-xl border border-white/10 bg-charcoal/40 p-4 text-sm text-white">

@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element -- native img keeps natural photo height for Drive assets */
+/* eslint-disable @next/next/no-img-element -- Native img keeps natural aspect ratio per portrait. */
 import { cn } from "@/lib/utils/cn";
 import { resolveImageSrc } from "@/lib/images/resolve-image-src";
 

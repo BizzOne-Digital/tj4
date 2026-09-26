@@ -495,7 +495,7 @@ export const defaultEvents: IEvent[] = [
     title: "Fall Tryouts — Grades 3–12",
     slug: "tryouts-fall-2026",
     description:
-      "Saturday, October 17, 2026 at Philipsburg-Osceola Middle School. Registration packet due Saturday, October 4, 2026.",
+      "Saturday, October 17, 2026 at Philipsburg-Osceola Middle School. Registration packet due Saturday, October 3, 2026.",
     date: new Date("2026-10-17"),
     location: "200 Short Street, Philipsburg, PA 16866",
     type: "tryout",
@@ -507,8 +507,8 @@ export const defaultEvents: IEvent[] = [
     title: "Winter Tryouts — Grades 3–12",
     slug: "tryouts-winter-2027",
     description:
-      "Sunday, February 14, 2027 at Philipsburg-Osceola Middle School. Registration packet due Sunday, February 7, 2027.",
-    date: new Date("2027-02-14"),
+      "Saturday, February 13, 2027 at Philipsburg-Osceola Middle School. Registration packet due Saturday, February 6, 2027.",
+    date: new Date("2027-02-13"),
     location: "200 Short Street, Philipsburg, PA 16866",
     type: "tryout",
     featured: false,

@@ -13,7 +13,7 @@ export const defaultSiteSettings: ISiteSettings = {
     "Our vision is to build an excellent youth basketball program in Central PA. We are committed to investing in athletics, academics, character, teamwork, and leadership while competing with class.",
   announcementBar: {
     enabled: true,
-    text: "2026–2027 Tryout Registration Now Open",
+    text: "2026–27 Registration Is Open — Sale $400 / $700 household",
     link: "/register",
   },
   contact: {

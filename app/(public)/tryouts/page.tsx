@@ -78,6 +78,12 @@ export default function TryoutsPage() {
                 <li key={fee}>• {fee}</li>
               ))}
             </ul>
+            {copy.saleNote ? (
+              <p className="mt-4 text-sm text-white">{copy.saleNote}</p>
+            ) : null}
+            {copy.priceGuarantee ? (
+              <p className="mt-2 text-sm text-steel">{copy.priceGuarantee}</p>
+            ) : null}
             <p className="mt-4 text-sm leading-relaxed">
               {copy.feesParagraphBeforeSquare}
               <a

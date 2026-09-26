@@ -4,7 +4,7 @@ import { InnerHero } from "@/components/sections/InnerHero";
 import { RegistrationForm } from "@/components/forms/RegistrationForm";
 import { getPrograms, getSiteSettings } from "@/lib/data/queries";
 import { drivePageHero } from "@/lib/images/drive-page-heroes";
-import { GOOGLE_SIGNUP_FORM_URL } from "@/lib/content/lions-copy";
+import { GOOGLE_SIGNUP_FORM_URL, registrationPromoCopy, SQUARE_SITE_URL } from "@/lib/content/lions-copy";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -25,6 +25,20 @@ export default async function RegisterPage() {
       />
       <section className="section-y">
         <div className="mx-auto max-w-3xl space-y-10 page-x">
+          <div className="gradient-card border border-electric/30 p-6 clip-angle sm:p-8">
+            <p className="text-xs uppercase tracking-[0.3em] text-electric">{registrationPromoCopy.headline}</p>
+            <h2 className="mt-2 text-2xl uppercase">{registrationPromoCopy.tagline}</h2>
+            <p className="mt-3 text-sm text-white">{registrationPromoCopy.salePricing}</p>
+            <p className="mt-2 text-sm text-steel">{registrationPromoCopy.priceGuarantee}</p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <Button href={GOOGLE_SIGNUP_FORM_URL} fullWidth>
+                Open Signup Form
+              </Button>
+              <Button href={SQUARE_SITE_URL} variant="secondary" fullWidth>
+                Pay Online (Square)
+              </Button>
+            </div>
+          </div>
           <div className="gradient-card p-6 clip-angle sm:p-8">
             <p className="text-xs uppercase tracking-[0.3em] text-electric">Central PA Lions Basketball Sign Ups</p>
             <h2 className="mt-2 text-2xl uppercase">AAU/Travel Team Registration</h2>
